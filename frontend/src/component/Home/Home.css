@@ -1,0 +1,12 @@
+.banner {
+    height: 90vmin;
+    background-color: rgb(255, 250, 243);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.featuredProducts {
+    padding: 100px;
+}
