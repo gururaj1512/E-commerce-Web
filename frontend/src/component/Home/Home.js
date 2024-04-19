@@ -1,28 +1,50 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useEffect } from 'react'
 import { FaMouse } from "react-icons/fa";
-import  './Home.css'
+import './Home.css'
 import Product from './Product.js'
+import MetaData from '../layout/MetaData.js';
+import { getProduct } from '../../actions/productAction.js'
+import { useDispatch, useSelector } from "react-redux";
+import Footer from '../layout/Footer/Footer.js'
+import Loader from '../layout/Loader/loader.js'
+import { useAlert } from 'react-alert'
 
-const product = {
-    name: "Blue Tshirt",
-    price: "Rs 300",
-    _id: "asdfghjk",
-    images: [{url: 'https://www.jiomart.com/images/product/original/rvowvf0akl/eyebogler-teal-tshirts-men-tshirt-tshirt-for-men-tshirt-mens-tshirt-men-s-polo-neck-regular-fit-half-sleeves-colorblocked-t-shirt-product-images-rvowvf0akl-0-202402121853.jpg?im=Resize=(500,630)'}]
-}
+
 
 const Home = () => {
+    const alert = useAlert()
+
+    const dispatch = useDispatch()
+    const { loading, products, error, productsCount } = useSelector(state => state.products)
+
+    useEffect(() => {
+        if (error) {
+            return alert.error(error)
+        }
+        dispatch(getProduct())
+    }, [dispatch, error, alert])
+
     return (
         <Fragment>
-            <div className="banner">
-                <p>Welcome to Ecommerce</p>
-                <h1>Find Amazing Products Below.</h1>
-                <a href="#featuredProducts">
-                    <button>Scroll <FaMouse/></button>
-                </a>
-            </div>
-            <div className='featuredProducts' id='featuredProducts'>
-                <Product product={product}/>    
-            </div>
+            {loading ? <Loader/> : 
+                <Fragment>
+                    <MetaData title={"E-Commerce"} />
+                    <div className="banner">
+                        <p>Welcome to E-Commerce</p>
+                        <h1>Find Amazing Products Below.</h1>
+                        <a href="#featuredProducts">
+                            <button className='btn bg-light my-3'>Scroll<FaMouse /></button>
+                        </a>
+                    </div>
+                    <h4 id='headingForProducts'>Featured Products</h4>
+                    <div className='featuredProducts' id='featuredProducts'>
+                        {products && products.map((product) => {
+                            return <Product product={product} key={product._id} />
+                        })}
+                    </div>
+                    <Footer/>
+                </Fragment>
+            }
         </Fragment>
     )
 }

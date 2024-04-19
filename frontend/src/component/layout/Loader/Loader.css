@@ -1,0 +1,37 @@
+.loading {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    z-index: 100;
+    background-color: rgba(255, 255, 255, 0.505);
+    width:  100%;
+    height: 100vh;
+}
+
+.loader {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 40%;
+    left: 46.4%;
+    z-index: 100;
+    background-color: rgba(38, 125, 125, 0);
+    width:  100px;
+    height: 100px;
+}
+
+.loader > div {
+    height: 100%;
+    width: 100%;
+    border-bottom: 3px solid #ff5e14;
+    border-radius: 100%;
+    animation: loadingRotate 800ms linear infinite;
+}
+
+@keyframes loadingRotate {
+    to {
+        transform: rotateZ(-360deg);
+    }
+}

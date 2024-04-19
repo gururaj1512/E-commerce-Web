@@ -1,0 +1,44 @@
+.productCard {
+    max-width: 14v;
+    width: max-content;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-decoration: none;
+    color: rgb(36, 36, 36);
+    margin: 2vmax;
+    transition: all 0.5s;
+    padding-bottom: 0.5vax;
+}
+
+.productCard > img {
+    width: 230px;
+}
+
+.productCard > div {
+    display: flex;
+    justify-content: flex-start;
+    margin: 0.5vmax;
+}
+
+.productCard > div > span {
+    margin: 0.5vmax;
+    font: 300 0.7vmax "Roboto";
+}
+
+.productCard > p {
+    font-family: Roboto;
+    font-size: 1.2vmax;
+    margin: 1vmax 0.5vmax;
+    margin-bottom: 0;
+}
+
+.productCard > span {
+    margin: 0.5vmax 0.5vmax;
+    color: #ff5e14;
+    font-size: 1vmax;
+}
+
+.productCard:hover {
+    box-shadow: 0 0 5px rgba(12,12,12,0.2);
+}

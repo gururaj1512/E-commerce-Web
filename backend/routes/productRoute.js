@@ -13,7 +13,7 @@ router.route('/admin/products/:id')
     .put(isAuthenticatedUser, authorizeRoles("admin"), updateProduct)
     .delete(isAuthenticatedUser, authorizeRoles("admin"), deleteProduct)
 
-router.route('/products/:id').get(isAuthenticatedUser, getProductDetails)
+router.route('/products/:id').get( getProductDetails )
 
 router.route('/reviews').put(isAuthenticatedUser, createProductReview)
 router.route('/reviews').get(getProductReviews).delete(isAuthenticatedUser, deleteReview)

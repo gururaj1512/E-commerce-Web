@@ -8,5 +8,15 @@
 }
 
 .featuredProducts {
-    padding: 100px;
+    width: 100%;
+    margin: 1vmax auto;
+    padding: 10px 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#headingForProducts {
+    text-align: center;
+    margin-top: 30px;
 }
