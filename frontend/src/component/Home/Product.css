@@ -42,3 +42,8 @@
 .productCard:hover {
     box-shadow: 0 0 5px rgba(12,12,12,0.2);
 }
+
+.reviewDetails {
+    display: flex;
+    align-items: center;
+}

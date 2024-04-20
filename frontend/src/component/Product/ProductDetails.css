@@ -1,0 +1,119 @@
+.ProductDetails {
+    width: 100vw;
+    max-width: 100%;
+    padding: 3vmax 15vmax;
+    /* box-sizing: border-box; */
+    display: flex;
+}
+
+.CarouselImage {
+    width: 25vmax;
+    max-height: 32vmax;
+    border-radius: 15px;
+}
+
+.Carousel {
+    width: 25vmax;
+    height: 33vmax;
+}
+
+.css-1m9128y {
+    margin: 0 !important;
+}
+
+.details-Block {
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 0 10px rgba(245, 234, 218, 0.5);
+    width: 100%;
+    height: fit-content;
+    margin-left: 30px;
+    border-radius: 15px;
+    padding: 2vmax 3vmax;
+}
+
+.details-Block1 {
+    border-bottom: 3px solid rgb(255, 250, 243);
+}
+
+.details-Block1 > h2 {
+    padding: 0;
+    margin: 0;
+    font-family: sans-serif;
+    color: #ff5e14;
+}
+
+.details-Block1 > p {
+    color: #00000048;
+    font-size: 1vmax;
+    margin-bottom: 10px;
+}
+
+.details-Block2 {
+    display: flex;
+    align-items: center;
+    margin: 10px 0 15px 0;
+}
+
+.details-Block2 > span{
+    font-size: 1vmax;
+    margin-left: 10px;
+}
+
+#stockStatus {
+    font-size: 20px;
+    margin: 0 20px;
+}
+
+.details-Block3-1-1 {
+    display: flex;
+}
+
+.details-Block3-1-1 > .btn {
+    height: 40px;
+    margin: 0 20px;
+    font-size: 18px;
+}
+
+.btnsign {
+    height: 40px;
+    width: 40px;
+    border: none;
+    outline: none;
+    background-color: rgb(240, 240, 240);
+}
+
+.details-Block3-1-1 > input {
+    height: 40px;
+    width: 75px;
+    border: 1px solid rgba(128, 128, 128, 0.092);
+    margin: 0 10px;
+    border-radius: 10px;
+}
+
+.details-Block4 {
+    margin-top: 10px;
+    height: 10vmax;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: auto;
+    color: rgb(29, 29, 29);
+}
+
+#submitReview {
+    outline: none;
+    border: none;
+    background-color: rgb(255, 44, 44);
+    height: 40px;
+    border-radius: 10px;
+    padding: 0 1vmax;
+    color: rgb(255, 255, 255);
+    font-size: 15px;
+}
+
+.details-Block5 {
+    margin: 20px 0;
+}
+
+.Reviews {
+    min-height: 100vh;
+    text-align: center;
+}
