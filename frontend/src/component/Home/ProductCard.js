@@ -4,10 +4,10 @@ import ReactStars from 'react-rating-stars-component'
 import './Product.css'
 
 
-const Product = ({ product }) => {
+const ProductCard = ({ product }) => {
     const options = {
         edit: false,
-        color: "aliceblue",
+        color: "#ff5e1430",
         acticeColor: "#ff5e14",
         size: window.innerWidth < 600 ? 20 : 25,
         value: product.ratings,
@@ -27,4 +27,4 @@ const Product = ({ product }) => {
     )
 }
 
-export default Product
+export default ProductCard;

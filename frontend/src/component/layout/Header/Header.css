@@ -1,0 +1,17 @@
+.logo {
+    height: 50px;
+}
+
+@media screen and (max-width: 400px) {
+    .logo {
+        height: 40px;
+    }
+
+    .navbar-toggler {
+        height: 40px;
+        width: 50px;
+        padding: 0;
+        outline: 0;
+        border: 0;
+    }
+}

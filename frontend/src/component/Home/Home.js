@@ -1,9 +1,9 @@
 import React, { Fragment, useEffect } from 'react'
 import { FaMouse } from "react-icons/fa";
 import './Home.css'
-import Product from './Product.js'
+import ProductCard from './ProductCard.js'
 import MetaData from '../layout/MetaData.js';
-import { getProduct } from '../../actions/productAction.js'
+import { clearErrors, getProduct } from '../../actions/productAction.js'
 import { useDispatch, useSelector } from "react-redux";
 import Footer from '../layout/Footer/Footer.js'
 import Loader from '../layout/Loader/loader.js'
@@ -15,11 +15,12 @@ const Home = () => {
     const alert = useAlert()
 
     const dispatch = useDispatch()
-    const { loading, products, error, productsCount } = useSelector(state => state.products)
+    const { loading, products, error } = useSelector(state => state.products)
 
     useEffect(() => {
         if (error) {
-            return alert.error(error)
+            alert.error(error)
+            dispatch(clearErrors())
         }
         dispatch(getProduct())
     }, [dispatch, error, alert])
@@ -39,7 +40,7 @@ const Home = () => {
                     <h4 id='headingForProducts'>Featured Products</h4>
                     <div className='featuredProducts' id='featuredProducts'>
                         {products && products.map((product) => {
-                            return <Product product={product} key={product._id} />
+                            return <ProductCard product={product} key={product._id} />
                         })}
                     </div>
                     <Footer/>

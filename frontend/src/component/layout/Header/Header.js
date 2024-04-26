@@ -8,7 +8,7 @@ const Header = () => {
         <div>
             <nav className="navbar navbar-expand-lg bg-body-tertiary" style={{padding: 0}}>
                 <div className="container-fluid" style={{backgroundColor: "#ffffff"}}>
-                    <a className="navbar-brand" href="/"><img src={logo} alt="" style={{height: '50px'}}/></a>
+                    <a className="navbar-brand" href="/"><img src={logo} className='logo' alt=""/></a>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>

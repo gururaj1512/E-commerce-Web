@@ -10,13 +10,34 @@
 .featuredProducts {
     width: 100%;
     margin: 1vmax auto;
-    padding: 10px 50px;
+    padding: 10px 0;
     display: flex;
     flex-wrap: wrap;
+    flex-direction: row;
     justify-content: center;
 }
 
 #headingForProducts {
     text-align: center;
     margin-top: 30px;
+}
+
+
+
+@media screen and (max-width:450px) {
+    .banner {
+        min-height: 90vh;
+    }
+
+    .banner > p {
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+
+    .banner > h1 {
+        font-size: 30px;
+        max-width: 75%;
+        text-wrap: wrap;
+        text-align: center;
+    }
 }

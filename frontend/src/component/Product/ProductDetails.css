@@ -32,7 +32,9 @@
 }
 
 .details-Block1 {
-    border-bottom: 3px solid rgb(255, 250, 243);
+    display: flex;
+    align-items:center;
+    margin-bottom: 10px;
 }
 
 .details-Block1 > h2 {
@@ -40,12 +42,14 @@
     margin: 0;
     font-family: sans-serif;
     color: #ff5e14;
+    margin-left: 10px;
 }
 
 .details-Block1 > p {
     color: #00000048;
     font-size: 1vmax;
-    margin-bottom: 10px;
+    margin-bottom: 0;
+    margin-left: 15px;
 }
 
 .details-Block2 {
@@ -64,6 +68,10 @@
     margin: 0 20px;
 }
 
+.details-Block3 {
+    border-top: 3px solid rgb(255, 250, 243);
+}
+
 .details-Block3-1-1 {
     display: flex;
 }
@@ -72,6 +80,13 @@
     height: 40px;
     margin: 0 20px;
     font-size: 18px;
+}
+
+.details-Block3-2 {
+    font-size: large;
+    font-weight: 600;
+    font-family: Poppins;
+    margin: 20px 0;
 }
 
 .btnsign {
@@ -91,11 +106,13 @@
 }
 
 .details-Block4 {
-    margin-top: 10px;
-    height: 10vmax;
+    margin-top: 20px;
+    min-height: 10vmax;
+    height: auto;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     overflow: auto;
     color: rgb(29, 29, 29);
+    font-size: 16px;
 }
 
 #submitReview {
@@ -109,11 +126,234 @@
     font-size: 15px;
 }
 
-.details-Block5 {
-    margin: 20px 0;
+.Reviews {
+    min-height: fit-content;
+    text-align: center;
+    margin: 20px auto 50px auto;
+    max-width: 90vw;
+    overflow: auto;
 }
 
-.Reviews {
-    min-height: 100vh;
+.reviewheading {
+    color:#000000aa;
+    font: 500 1.9vmax Roboto;
     text-align: center;
+    border-bottom: 1px solid #00000048;
+    width: 30%;
+    margin: auto;
+    padding: 1vmax;
+    margin-bottom: 4vmax;
+}
+
+.reviewBox {
+    display: flex;
+}
+
+.reviewCard {
+    flex: none;
+    width: 28vmax;
+    padding: 1vmax;
+    min-height: 35vh;
+    border-radius: 15px;
+    margin: 0 10px;
+    background-color: #ffffff;
+    border: 1px solid #ffd90072;
+    margin-bottom: 2vmax;
+}
+
+.reviewCard:hover {
+    box-shadow: 3px 3px 0 #ffd90072;
+    background-color: #ffd9000b;
+}
+
+.reviewComment {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 16px;
+    color: #383838;
+    font-weight: 400;
+}
+
+.reviewCard > .userReviewDetails > img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+.userReviewDetails {
+    margin: 0 0 10px 0;
+    display: flex;
+    /* justify-content: center; */
+    padding-bottom: 1vmax;
+    padding-left: 1vmax;
+    padding-right: 1vmax;
+    border-radius: 15px;
+    border-bottom: 1px solid #ffd90072;
+}
+
+.userReviewDetails1 {
+    flex-direction: row;
+    margin: auto 20px;
+    text-align: left;
+}
+
+.userReviewDetails1 > p {
+    margin: 0;
+}
+
+
+.Reviews {
+  scrollbar-width: thin;
+}
+
+
+
+
+
+@media screen and (max-width: 560px) {
+    .ProductDetails {
+        width: fit-content;
+        display: block;
+        padding: 0;
+        margin: 20px auto;
+    }
+
+    .ImageDisplay {
+        width: 75vw;
+        height: max-content;
+        margin-bottom: 20px;
+    }
+
+    .CarouselImage {
+        width: 100%;
+        max-height: 100vmax;
+        border-radius: 15px;
+    }
+    
+    .Carousel {
+        width: 55vmax;
+        height: max-content;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .details-Block {
+        background-color: rgb(255, 255, 255);
+        box-shadow: 0 0 10px rgba(245, 234, 218, 0.742);
+        margin: 0;
+        width: 75vw;
+    }
+
+    .details-Block1 {
+        flex-wrap: wrap;
+    }
+
+    .details-Block1 > h2 {
+        padding: 0;
+        margin: 0;
+        font-family: sans-serif;
+        color: #ff5e14;
+        margin-left: 10px;
+    }
+    
+    .details-Block1 > p {
+        color: #00000048;
+        font-size: 10px;
+        margin-bottom: 0;
+        margin-left: 15px;
+    }
+
+    .details-Block2 {
+        flex-wrap: wrap;
+    }
+
+    .details-Block2 > span{
+        font-size: 12px;
+        margin-left: 10px;
+    }
+
+    .details-Block3-2 {
+        font-size: large;
+        font-weight: 600;
+        font-family: Poppins;
+        margin: 10px 0;
+    }
+
+    .details-Block3-1-1 > .btn {
+        height: 30px;
+        margin: 0 20px;
+        font-size: 12px;
+    }
+
+    .details-Block3-1-1 > input {
+        height: 30px;
+        width: 75px;
+        border: 1px solid rgba(128, 128, 128, 0.092);
+        margin: 0 10px;
+        border-radius: 10px;
+    } 
+
+    .btnsign {
+        height: 30px;
+        width: 30px;
+        border: none;
+        outline: none;
+        background-color: rgb(240, 240, 240);
+    }
+
+    #stockStatus {
+        font-size: 14px;
+        margin: 0 20px;
+    }
+
+    .details-Block4 {
+        font-size: 12px;
+        min-height: 10vh;
+    }
+
+    #submitReview {
+        outline: none;
+        border: none;
+        background-color: rgb(255, 44, 44);
+        height: 30px;
+        width: 100px;
+        border-radius: 5px;
+        padding: 0 1vmax;
+        color: rgb(255, 255, 255);
+        font-size: 12px;
+    }
+
+    .details-Block5 {
+        margin-bottom: 10px;
+    }
+
+    .reviewCard {
+        width: fit-content;
+        max-width: 90%;
+        min-height: 30vh;
+    }
+
+    .reviewheading {
+        font: 500 14px Roboto;
+        width: 40%;
+    }
+
+    .reviewCard > .userReviewDetails > img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+    }
+
+    .userReviewDetails {
+        padding: 5px 10px;
+        margin-bottom: 10px;
+    }
+
+    .userReviewDetails1 > p {
+        font-size: 12px;
+    }
+
+    .reviewComment {
+        font-size: 12px;
+        text-wrap: auto;
+    }
 }
