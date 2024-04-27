@@ -3,18 +3,18 @@ import Carousel from 'react-material-ui-carousel'
 import './ProductDetails.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { clearErrors, getProductDetails } from '../../actions/productAction'
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import ReactStars from 'react-rating-stars-component'
 import Reviewcard from './Reviewcard.js'
 import Footer from '../layout/Footer/Footer.js';
 import Loader from '../layout/Loader/loader.js';
 import { useAlert } from 'react-alert'
+import MetaData from '../layout/MetaData.js'
 
 
 
-const ProductDetails = ({ match }) => {
+const ProductDetails = () => {
     let { id } = useParams();
-    const navigate = useNavigate();
     const alert = useAlert();
     const dispatch = useDispatch()
 
@@ -28,11 +28,12 @@ const ProductDetails = ({ match }) => {
             dispatch(clearErrors())
         }
         dispatch(getProductDetails(id))
-    }, [dispatch, id, navigate, error, alert])
+    }, [dispatch, id, error, alert])
 
     return (
         <Fragment>
             {loading ? <Loader /> : <Fragment>
+                <MetaData title={`E-Commerce - ${product.name}`}/>
                 <div className="ProductDetails">
                     <div className='ImageDisplay'>
                         <Carousel className='Carousel'>

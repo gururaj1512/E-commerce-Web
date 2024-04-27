@@ -1,6 +1,8 @@
 import React from 'react'
 import './Header.css'
 import logo from '../../../images/logo.png'
+import Login from '../../../images/login.png'
+import { FaSearch } from 'react-icons/fa'
 
 const Header = () => {
 
@@ -18,7 +20,7 @@ const Header = () => {
                                 <a className="nav-link active" aria-current="page" href="/">Home</a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="/product">Products</a>
+                                <a className="nav-link" href="/products">Products</a>
                             </li>
                             {/*<li className="nav-item dropdown">
                                 <a className="nav-link dropdown-toggle" href="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -33,8 +35,11 @@ const Header = () => {
                             </li>*/}
                         </ul>
                         <form className="d-flex" role="search">
-                            <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-                                <button className="btn btn-outline-success" type="submit">Search</button>
+                            <input className="search-input form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+                            {/*<button className="btn search-button" type="submit"><FaSearch/></button>*/}
+                            <a href="/login">
+                                <img className='login' src={Login} alt="" />
+                            </a>
                         </form>
                     </div>
                 </div>
