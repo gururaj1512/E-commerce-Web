@@ -12,7 +12,7 @@
 
 .LoginSignupBox {
     width: 30vw;
-    min-width: 200px;
+    min-width: 300px;
     height: 70vh;
     box-sizing: border-box;
     overflow: hidden;
@@ -27,7 +27,7 @@
 
 .login_signup_toggle>p {
     color: black;
-    font: 400 1vmax "Roboto";
+    font: 400 14px "Roboto";
     transition: all 0.5s;
     cursor: pointer;
     display: grid;
@@ -108,9 +108,15 @@
     color: rgb(95, 154, 255);
 }
 
-.registerImage {
+.demoProfile {
+    height: 3vmax;
     width: 3vmax;
     border-radius: 50%;
+    margin: 0 10px 0 0;
+}
+
+.registerImage {
+    width: 3vmax;
 }
 
 .registerImage>input {
@@ -167,3 +173,66 @@
 .shiftToRight {
     transform: translateX(100%);
 }
+
+
+
+
+@media screen and (max-width: 600px) {
+    .slider-btns {
+        position: relative;
+    }
+
+    .slider-btns > button {
+        position: absolute;
+        top: 300%;
+    }
+    .LoginSignUpContainer {
+      background-color: white;
+    }
+    .LoginSignUpBox {
+      width: 100vw;
+      height: 95vh;
+    }
+    .login_signUp_toggle {
+      height: 5vmax;
+    }
+    .login_signUp_toggle > p {
+      font: 300 1.5vmax "Roboto";
+    }
+  
+    .loginForm,
+    .signUpForm {
+      padding: 5vmax;
+    }
+  
+    .loginForm > div > input,
+    .signUpForm > div > input {
+      padding: 2.5vmax 5vmax;
+      font: 300 1.7vmax sans-serif;
+    }
+  
+    .loginForm > div > svg,
+    .signUpForm > div > svg {
+      font-size: 2.8vmax;
+    }
+  
+    .loginForm > a {
+      font: 500 1.8vmax "Gill Sans";
+    }
+  
+    .loginForm > img {
+      width: 8vmax;
+      border-radius: 100%;
+    }
+  
+    .registerImage > input::-webkit-file-upload-button {
+      height: 7vh;
+      font: 400 1.8vmax sans-serif;
+    }
+  
+    .loginBtn,
+    .signUpBtn {
+      font: 300 1.9vmax "Roboto";
+      padding: 1.8vmax;
+    }
+  }
