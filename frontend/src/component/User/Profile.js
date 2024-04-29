@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect } from 'react'
 import './Profile.css'
 import MetaData from '../layout/MetaData'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import Loader from '../layout/Loader/loader'
 
@@ -13,35 +13,34 @@ const Profile = () => {
         if (isAuthenticated === false) {
             navigate('/login')
         }
-    })
+    }, [navigate, isAuthenticated])
 
     return (
         <Fragment>
             {
                 loading ? <Loader /> : <Fragment>
                     <div className='mainProfileDiv'>
-                        <MetaData title={`${user.name}'s Profile`} />
-                        <div className="profileContainer">
-                            <h1>My Profile</h1>
-                            <img src={user.avatar.url} alt={user.name} />
-                            <Link to="me/update">Edit Profile</Link>
-                        </div>
-                        <div>
-                            <div>
-                                <h4>Full Name</h4>
-                                <p>{user.name}</p>
+                        <h1>My Profile</h1>
+                        <div className="secProfileDiv">
+                            <MetaData title={`${user.name}'s Profile`} />
+                            <div className="profileContainer">
+                                <img src={user.avatar.url} alt={user.name} />
                             </div>
-                            <div>
-                                <h4>Email</h4>
-                                <p>{user.email}</p>
-                            </div>
-                            <div>
-                                <h4>Joined on</h4>
-                                <p>{String(user.createdAt).substr(0, 10)}</p>
-                            </div>
-                            <div>
-                                <Link to="/orders">My Orders</Link>
-                                <Link to="/password/update">Change Password</Link>
+                            <div className='profileDetails'>
+                                <div className='userName'>
+                                    <p>{user.name}</p>
+                                </div>
+                                <div className='userCreatedAt'>
+                                    <p>Joined on: {String(user.createdAt).substr(0, 10)}</p>
+                                </div>
+                                <div className='userEmail'>
+                                    <p>Email : {user.email}</p>
+                                </div>
+                                <div className='userPersonalDetails'>
+                                    <a href="/orders">My Orders</a>
+                                    <a href="/password/update">Change Password</a>
+                                    <a href="me/update">Edit Profile</a>
+                                </div>
                             </div>
                         </div>
                     </div>

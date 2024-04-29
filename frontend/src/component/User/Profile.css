@@ -1,6 +1,132 @@
 .mainProfileDiv {
-    position: absolute;
-    top: 0%;
-    left: 0%;
     background-color: white;
+    z-index: 100;
+    max-width: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.mainProfileDiv > h1 {
+    display: block;
+    margin-top: 20px;
+    padding-bottom: 30px;
+    font: 400 35px roboto;
+}
+
+.secProfileDiv {
+    background-color: rgb(255, 255, 255);
+    width: 40vw;
+    height: 70vh;
+    border-radius: 30px;
+    box-shadow: 0 0 10px rgb(229, 229, 229);
+}
+
+.profileContainer {
+    position: relative;
+    width: 100%;
+    height: 20%;
+    margin: 10px 0;
+}
+
+.profileContainer > img {
+    width: 7vw;
+    min-width: 80px;
+    height: 7vw;
+    min-height: 80px;
+    border-radius: 50%;
+    outline: none;
+    border: none;
+    position: absolute;
+    left: 43%;
+    top: 5%;
+}
+
+.profileDetails {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.profileDetails > div {
+    text-align: center;
+    height: fit-content;
+}
+
+.profileDetails > div > p {
+    margin-bottom: 0;
+}
+
+.userName {
+    padding-top: 10px;
+    font: 500 3vmax Poppins;
+    color: rgb(71, 71, 71);
+}
+
+.userEmail {
+    color: rgb(101, 101, 101);
+    margin-top: 40px;
+    font: 400 1.4vmax Poppins;
+    margin-bottom: 50px;
+}
+
+.userPersonalDetails {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.userPersonalDetails > a {
+    text-decoration: none;
+    color: rgb(245, 122, 0);
+    font: 400 100% "poppins";
+    transition: all 0.5s;
+    margin: 0 20px;
+}
+
+.userPersonalDetails > a:hover{
+    color: rgb(233, 124, 0);
+}
+
+
+
+@media screen and (width> 425px) {
+    .secProfileDiv {
+        min-width: 420px;
+    }
+}
+
+@media screen and (width<=425px) {
+    .mainProfileDiv > h1 {
+        padding-bottom: 40px;
+    }
+
+    .secProfileDiv {
+        width: 80%;
+        height: 65vh;
+    }
+
+    .profileContainer > img {
+        width: 80px;
+        height: 80px;
+        position: absolute;
+        top: -10%;
+        left: 37%;
+    }
+
+    .profileDetails {
+        padding-top: 20px;
+    }
+
+    .userEmail {
+        font-size: 2.5vmax;
+    }
+
+    .userPersonalDetails > a {
+        font-size: 12px;
+    }
 }

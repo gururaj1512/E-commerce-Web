@@ -10,8 +10,9 @@ import Search from './component/Product/Search.js'
 import LoginSignup from './component/User/LoginSignup.js'
 import Profile from './component/User/Profile.js'
 import { loadUser } from './actions/userActions.js';
-import store from './store.js'
+// import store from './store.js'
 import { useSelector } from 'react-redux';
+import { store } from './store.js'
 
 
 function App() {
