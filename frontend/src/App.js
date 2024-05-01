@@ -9,16 +9,19 @@ import Products from './component/Product/Products.js'
 import Search from './component/Product/Search.js'
 import LoginSignup from './component/User/LoginSignup.js'
 import Profile from './component/User/Profile.js'
+import UpdateProfile from './component/User/UpdateProfile.js'
+import UpdatePassword from './component/User/UpdatePassword.js'
+import ForgotPassword from './component/User/ForgotPassword.js'
 import { loadUser } from './actions/userActions.js';
-// import store from './store.js'
 import { useSelector } from 'react-redux';
-import { store } from './store.js'
+import { persistReduxStore } from './store.js'
 
 
 function App() {
 
-  useEffect((e) => {
-    store.dispatch(loadUser());
+  const { user, isAuthenticated } = useSelector((state) => state.user)
+  useEffect(() => {
+    persistReduxStore.dispatch(loadUser());
     WebFont.load({
       google: {
         families: ["Roboto", "Droid Sans", "Chilanka"],
@@ -26,7 +29,6 @@ function App() {
     });
   }, []);
 
-  const { user } = useSelector((state) => state.user)
 
   return (
     <div className="App">
@@ -41,7 +43,10 @@ function App() {
           <Route exact path='/search' element={<Search />} />
 
           <Route exact path='/login' element={<LoginSignup />} />
-          <Route exact path='/account' element={<Profile user={user} />} />
+          { isAuthenticated && <Route exact path='/account' element={<Profile user={user} />} /> }
+          { isAuthenticated && <Route exact path='/me/update' element={<UpdateProfile />} /> }
+          { isAuthenticated && <Route exact path='/password/update' element={<UpdatePassword />} /> }
+          <Route exact path='/password/forgot' element={<ForgotPassword />} />
         </Routes>
       </Router>
     </div>

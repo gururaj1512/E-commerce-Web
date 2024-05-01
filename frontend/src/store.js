@@ -1,29 +1,30 @@
 import { thunk } from 'redux-thunk'
 import { createStore, combineReducers, applyMiddleware } from 'redux'
-import { composeWithDevTools } from 'redux-devtools-extension'
-import { productDetailReducer, productReducer } from './reducers/productReducer';
-import { userReducer } from './reducers/userReducer';
+import { composeWithDevTools } from 'redux-devtools-extension'  // For Redux Devtools
+
 import storage from 'redux-persist/lib/storage';
-import { persistReducer, persistStore } from 'redux-persist';
+import { persistReducer, persistStore } from 'redux-persist';  // redux-persist for storing data in state
+
+import { productDetailReducer, productReducer } from './reducers/productReducer';
+import { forgotPasswordReducer, profileReducer, userReducer } from './reducers/userReducer';
 
 const persistConfig = {
     key: 'root',
     storage,
 }
 
-const reducer = combineReducers({
+const persistCombineReducer = combineReducers({
     products: productReducer,
     productDetails: productDetailReducer,
-    user: userReducer
-});
+    user: userReducer,
+    profile: profileReducer,
+    forgotPassword: forgotPasswordReducer
+}); // To combine multiple reducers in one
 
-const persistedReducer = persistReducer(persistConfig, reducer)
-
+const persistedReducer = persistReducer(persistConfig, persistCombineReducer)
 
 let initialState = {};
-
 const middleware = [thunk];
 
-export const store = createStore(persistedReducer, initialState, composeWithDevTools(applyMiddleware(...middleware)));
-
-export const persistor = persistStore(store)
+export const persistReduxStore = createStore(persistedReducer, initialState, composeWithDevTools(applyMiddleware(...middleware)));
+export const persistor = persistStore(persistReduxStore);

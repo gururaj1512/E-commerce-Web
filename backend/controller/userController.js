@@ -67,17 +67,20 @@ exports.logout = catchAsyncError(async (req, res, next) => {
 // Forgot Password
 exports.forgotPassword = catchAsyncError(async (req, res, next) => {
   const user = await User.findOne({ email: req.body.email });
+
   if (!user) {
     return next(new ErrorHander("User not found", 404));
   }
 
   // Get ResetPassword Token
   const resetToken = user.getResetPasswordToken();
+
   await user.save({ validateBeforeSave: false });
 
   const resetPasswordUrl = `${req.protocol}://${req.get(
     "host"
   )}/password/reset/${resetToken}`;
+
   const message = `Your password reset token is :- \n\n ${resetPasswordUrl} \n\nIf you have not requested this email then, please ignore it.`;
 
   try {
@@ -94,6 +97,7 @@ exports.forgotPassword = catchAsyncError(async (req, res, next) => {
   } catch (error) {
     user.resetPasswordToken = undefined;
     user.resetPasswordExpire = undefined;
+
     await user.save({ validateBeforeSave: false });
 
     return next(new ErrorHander(error.message, 500));
@@ -161,9 +165,27 @@ exports.updatePassword = catchAsyncError(async (req, res, next) => {
 // Update User Details
 exports.updateUserProfile = catchAsyncError(async (req, res, next) => {
   const newUserData = {
-    name : req.body.name,
+    name: req.body.name,
     email: req.body.email
   }
+
+  if (req.body.avatar !== "") {
+    const user = await User.findById(req.user.id);
+    const imageId = user.avatar.public_id;
+
+    await cloudinary.v2.uploader.destroy(imageId);
+    const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
+      folder: "avatars",
+      width: 150,
+      crop: "scale"
+    })
+
+    newUserData.avatar = {
+      public_id: myCloud.public_id,
+      url: myCloud.secure_url,
+    }
+  }
+
   const user = await User.findByIdAndUpdate(req.user.id, newUserData, {
     new: true,
     newValidators: true,
@@ -174,7 +196,7 @@ exports.updateUserProfile = catchAsyncError(async (req, res, next) => {
     success: true,
   })
 });
- 
+
 // Get all users --> Admin
 exports.getAllUsers = catchAsyncError(async (req, res, next) => {
   const users = await User.find()
@@ -183,7 +205,7 @@ exports.getAllUsers = catchAsyncError(async (req, res, next) => {
     users: users,
   })
 })
- 
+
 // Get single users --> Admin
 exports.getSingleUser = catchAsyncError(async (req, res, next) => {
   const user = await User.findById(req.params.id)

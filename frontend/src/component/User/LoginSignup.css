@@ -182,57 +182,61 @@
         position: relative;
     }
 
-    .slider-btns > button {
+    .slider-btns>button {
         position: absolute;
         top: 300%;
     }
+
     .LoginSignUpContainer {
-      background-color: white;
+        background-color: white;
     }
+
     .LoginSignUpBox {
-      width: 100vw;
-      height: 95vh;
+        width: 100vw;
+        height: 95vh;
     }
+
     .login_signUp_toggle {
-      height: 5vmax;
+        height: 5vmax;
     }
-    .login_signUp_toggle > p {
-      font: 300 1.5vmax "Roboto";
+
+    .login_signUp_toggle>p {
+        font: 300 1.5vmax "Roboto";
     }
-  
+
     .loginForm,
     .signUpForm {
-      padding: 5vmax;
+        padding: 5vmax;
     }
-  
-    .loginForm > div > input,
-    .signUpForm > div > input {
-      padding: 2.5vmax 5vmax;
-      font: 300 1.7vmax sans-serif;
+
+    .loginForm>div>input,
+    .signUpForm>div>input {
+        padding: 2.5vmax 5vmax;
+        font: 300 1.7vmax sans-serif;
     }
-  
-    .loginForm > div > svg,
-    .signUpForm > div > svg {
-      font-size: 2.8vmax;
+
+    .loginForm>div>svg,
+    .signUpForm>div>svg {
+        font-size: 2.8vmax;
     }
-  
-    .loginForm > a {
-      font: 500 1.8vmax "Gill Sans";
+
+    .loginForm>a {
+        font: 500 1.8vmax "Gill Sans";
     }
-  
-    .loginForm > img {
-      width: 8vmax;
-      border-radius: 100%;
+
+    .loginForm>img {
+        width: 8vmax;
+        border-radius: 100%;
     }
-  
-    .registerImage > input::-webkit-file-upload-button {
-      height: 7vh;
-      font: 400 1.8vmax sans-serif;
+
+    .registerImage>input::-webkit-file-upload-button {
+        height: 7vh;
+        font: 400 1.8vmax sans-serif;
     }
-  
+
     .loginBtn,
     .signUpBtn {
-      font: 300 1.9vmax "Roboto";
-      padding: 1.8vmax;
+        font: 300 1.9vmax "Roboto";
+        padding: 1.8vmax;
     }
-  }
+}
