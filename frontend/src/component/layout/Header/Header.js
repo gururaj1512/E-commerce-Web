@@ -4,6 +4,7 @@ import logo from '../../../images/logo.png'
 import Login from '../../../images/login.png'
 import Logout from '../../../images/logout.png'
 import Orders from '../../../images/orders.png'
+import Cart from '../../../images/cart.png'
 import { useAlert } from 'react-alert'
 import { logout } from '../../../actions/userActions'
 import { useDispatch } from 'react-redux'
@@ -50,6 +51,9 @@ const Header = ({ user }) => {
                                 <button className="btn search-button" type="submit"><FaSearch/></button>*/}
                             <a href="/orders">
                                 <img className='login' src={Orders} alt="" />
+                            </a>
+                            <a href="/cart">
+                                <img className='login' src={Cart} alt="" />
                             </a>
                             <a href="/login">
                                 <img className='login' src={Login} alt="" />

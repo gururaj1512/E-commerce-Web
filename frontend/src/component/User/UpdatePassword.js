@@ -4,7 +4,7 @@ import { Fragment, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 // import Loader from '../layout/Loader/loader'
 import { useSelector, useDispatch } from "react-redux"
-import { updatePasswowrd, clearErrors } from '../../actions/userActions';
+import { updatePassword, clearErrors } from '../../actions/userActions';
 import { useAlert } from 'react-alert'
 import MetaData from '../layout/MetaData';
 import { UPDATE_PASSWORD_RESET } from '../../constants/userConstants';
@@ -33,7 +33,7 @@ const UpdatePassword = () => {
         myForm.set("newPassword", newPassword);
         myForm.set("confirmPassword", confirmPassword);
 
-        dispatch(updatePasswowrd(myForm))
+        dispatch(updatePassword(myForm))
     }
 
     useEffect(() => {

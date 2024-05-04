@@ -12,6 +12,8 @@ import Profile from './component/User/Profile.js'
 import UpdateProfile from './component/User/UpdateProfile.js'
 import UpdatePassword from './component/User/UpdatePassword.js'
 import ForgotPassword from './component/User/ForgotPassword.js'
+import ResetPassword from './component/User/ResetPassword.js'
+import Cart from './component/Cart/Cart.js'
 import { loadUser } from './actions/userActions.js';
 import { useSelector } from 'react-redux';
 import { persistReduxStore } from './store.js'
@@ -24,7 +26,7 @@ function App() {
     persistReduxStore.dispatch(loadUser());
     WebFont.load({
       google: {
-        families: ["Roboto", "Droid Sans", "Chilanka"],
+        families: ["Roboto", "Droid Sans", "Chilanka"], 
       }
     });
   }, []);
@@ -47,6 +49,9 @@ function App() {
           { isAuthenticated && <Route exact path='/me/update' element={<UpdateProfile />} /> }
           { isAuthenticated && <Route exact path='/password/update' element={<UpdatePassword />} /> }
           <Route exact path='/password/forgot' element={<ForgotPassword />} />
+          <Route exact path='/password/reset/:token' element={<ResetPassword />} />
+
+          <Route exact path='/cart' element={<Cart />} />
         </Routes>
       </Router>
     </div>

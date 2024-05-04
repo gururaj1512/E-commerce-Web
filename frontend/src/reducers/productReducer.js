@@ -2,7 +2,6 @@ import { ALL_PRODUCT_FAIL, ALL_PRODUCT_REQUEST, ALL_PRODUCT_SUCCESS, CLEAR_ERROR
 
 
 export const productReducer = ((state = { products: [] }, action) => {
-
     switch (action.type) {
         case ALL_PRODUCT_REQUEST:
             return {
@@ -30,7 +29,6 @@ export const productReducer = ((state = { products: [] }, action) => {
         default:
             return state
     }
-
 })
 
 

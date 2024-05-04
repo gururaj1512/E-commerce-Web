@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import Carousel from 'react-material-ui-carousel'
 import './ProductDetails.css'
 import { useDispatch, useSelector } from 'react-redux'
@@ -10,17 +10,36 @@ import Footer from '../layout/Footer/Footer.js';
 import Loader from '../layout/Loader/loader.js';
 import { useAlert } from 'react-alert'
 import MetaData from '../layout/MetaData.js'
+import { addItemsToCart } from '../../actions/cartAction.js'
 
 
 
 const ProductDetails = () => {
     let { id } = useParams();
     const alert = useAlert();
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
 
     const { loading, product, error } = useSelector(
         (state) => state.productDetails
     )
+
+    const [quantity, setQuantity] = useState(1);
+    const increaseQuantity = () => {
+        if (product.stock <= quantity) return;
+
+        let qty = quantity + 1;
+        setQuantity(qty);
+    }
+    const decreaseQuantity = () => {
+        if (quantity <= 1) return;
+        let qty = quantity - 1;
+        setQuantity(qty);
+    }
+
+    const addToCartHandler = () => {
+        dispatch(addItemsToCart(id, quantity));
+        alert.success("Item added to Cart");
+    }
 
     useEffect(() => {
         if (error) {
@@ -37,15 +56,14 @@ const ProductDetails = () => {
                 <div className="ProductDetails">
                     <div className='ImageDisplay'>
                         <Carousel className='Carousel'>
-                            {product.images &&
-                                product.images.map((item, i) => {
-                                    return <img
-                                        src={item.url}
-                                        key={item.url}
-                                        alt={`$[i]Slide`}
-                                        className='CarouselImage'
-                                    />
-                                })}
+                            {product.images && product.images.map((item, i) => {
+                                return <img
+                                    src={item.url}
+                                    key={item.url}
+                                    alt={`$[i]Slide`}
+                                    className='CarouselImage'
+                                />
+                            })}
                         </Carousel>
                     </div>
                     <div className='details-Block'>
@@ -59,10 +77,10 @@ const ProductDetails = () => {
                             </div>
                             <div className="details-Block3-1">
                                 <div className="details-Block3-1-1">
-                                    <button className="btnsign">-</button>
-                                    <input type="number" value={1} readOnly />
-                                    <button className="btnsign">+</button>
-                                    <button className="btn btn-primary">Add to cart</button>
+                                    <button className="btnsign" onClick={decreaseQuantity}>-</button>
+                                    <input type="number" value={quantity} readOnly />
+                                    <button className="btnsign" onClick={increaseQuantity}>+</button>
+                                    <button className="btn btn-primary" onClick={addToCartHandler}>Add to cart</button>
                                 </div>
                             </div>
                         </div>
@@ -72,8 +90,8 @@ const ProductDetails = () => {
                         <div className="details-Block2">
                             <ReactStars edit={false} color={'aliceblue'} activeColor={"#ff5e14"} isHalf={true} value={parseInt(product.ratings, 10)} size={window.innerWidth < 600 ? 20 : 25} />
                             <span>({product.numOfReviews} reviews)</span>
-                            <p className={product.Stock < 1 ? `text-danger` : `text-success`} id='stockStatus'>
-                                {product.Stock < 1 ? "Out of Stock" : "In Stock"}
+                            <p className={product.stock < 1 ? `text-danger` : `text-success`} id='stockStatus'>
+                                {product.stock < 1 ? "Out of Stock" : "In Stock"}
                             </p>
                         </div>
                         <div className="details-Block5">
