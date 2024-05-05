@@ -4,11 +4,13 @@ import CartItemCard from './CartItemCard.js'
 import { useDispatch, useSelector } from 'react-redux'
 import { addItemsToCart, removeItemsFromCart } from '../../actions/cartAction.js'
 import { FaShoppingBag } from 'react-icons/fa'
+import { useNavigate } from 'react-router-dom'
 
 
 const Cart = () => {
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const { cartItems } = useSelector((state) => state.cart);
 
     const increaseQuantity = (id, quantity, stock) => {
@@ -31,6 +33,10 @@ const Cart = () => {
         dispatch(removeItemsFromCart(id));
     }
 
+    const checkOutHandler = () => {
+        navigate('/login?redirect=shipping');
+    }
+
     return (
         <Fragment>
             {
@@ -51,7 +57,7 @@ const Cart = () => {
 
                             {cartItems && cartItems.map((item) => (
                                 <div className="cartContainer">
-                                    <CartItemCard item={item} deleteCartItems={deleteCartItems} key={item.product} />
+                                    <CartItemCard item={item} deleteCartItems={deleteCartItems} key={item.product + item.name} />
                                     <div className="cartInput">
                                         <button className="btn btnSign" onClick={() => deccreaseQuantity(item.product, item.quantity)} >-</button>
                                         <input type="number" value={item.quantity} readOnly />
@@ -72,7 +78,7 @@ const Cart = () => {
                                 </div>
                                 <div></div>
                                 <div className="checkOutBtn">
-                                    <button>Check Out</button>
+                                    <button onClick={checkOutHandler}>Check Out</button>
                                 </div>
                             </div>
                         </div>

@@ -1,0 +1,141 @@
+.shippingContainer {
+    background-color: rgba(255, 255, 255, 0.75);
+    top: 0%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding-top: 30px;
+}
+
+.resetPasswordContainer > h2 {
+    border-bottom: 1px solid grey;
+    padding-bottom: 30px;
+}
+
+.shippingBox {
+    width: 70vw;
+    min-width: 300px;
+    min-height: 50vh;
+    box-sizing: border-box;
+    overflow: hidden;
+    background-color: rgba(250, 250, 250, 0.7);
+    border-radius: 15px;
+}
+
+.shippingForm {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: auto;
+    padding: 2vmax;
+    justify-content: space-evenly;
+    height: 90%;
+    transition: all 0.5s;
+}
+
+.shippingForm>div {
+    display: flex;
+    align-items: center;
+    width: 30vw;
+    min-width: 200px;
+    margin: 10px 0;
+}
+
+.shippingForm>div>input {
+    min-width: 200px;
+    padding: 1vmax 4vmax;
+    padding-right: 1vmax;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    border-radius: 5px;
+    font: 300 12px sans-serif;
+}
+
+.shippingForm>div>svg {
+    position: absolute;
+    transform: translateX(1vmax);
+    font-size: 1.6vmax;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.shippingForm > div > select {
+    min-width: 200px;
+    padding: 1vmax 4vmax;
+    padding-right: 1vmax;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    border-radius: 5px;
+    font: 300 12px sans-serif;
+}
+
+.shippingForm > div > select > option {
+    font-size: medium;
+}
+
+.shippingBtnDiv {
+    display: block;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.shippingBtn {
+    border: none;
+    background-color: #ff5100;
+    color: white;
+    font: 400 12px "Roboto";
+    width: 30%;
+    padding: 0.8vmax;
+    cursor: pointer;
+    transition: all 0.5s;
+    border-radius: 5px;
+    outline: none;
+    margin-top: 40px;
+}
+
+.shippingBtn:hover {
+    background-color: #c83f00;
+}
+
+
+@media screen and (max-width: 600px) {
+    .shippingContainer {
+        background-color: white;
+    }
+
+    .shippingBox {
+        width: 80vw;
+        height: 95vh;
+    }
+
+    .shippingForm {
+        padding: 5vmax;
+    }
+
+    .shippingForm > div {
+        margin: 5px;
+    }
+
+    .shippingForm>div>input {
+        padding: 2.5vmax 5vmax;
+        font: 300 2vmax sans-serif;
+    }
+
+    .shippingForm>div>select {
+        padding: 2.5vmax 5vmax;
+        font: 300 2vmax sans-serif;
+    }
+
+    .shippingForm>div>svg {
+        font-size: 2.8vmax;
+    }
+
+    .shippingBtn {
+        font: 300 1.9vmax "Roboto";
+        padding: 1.8vmax;
+    }
+}

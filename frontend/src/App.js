@@ -1,7 +1,7 @@
 import './App.css';
 import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
 import WebFont from 'webfontloader'
-import React, { useEffect } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import Header from './component/layout/Header/Header.js'
 import Home from './component/Home/Home.js'
 import ProductDetails from './component/Product/ProductDetails.js'
@@ -14,19 +14,33 @@ import UpdatePassword from './component/User/UpdatePassword.js'
 import ForgotPassword from './component/User/ForgotPassword.js'
 import ResetPassword from './component/User/ResetPassword.js'
 import Cart from './component/Cart/Cart.js'
+import Shipping from './component/Cart/Shipping.js'
+import ConfirmOrder from './component/Cart/ConfirmOrder.js'
+import Payment from './component/Cart/Payment.js'
+import OrderSuccess from './component/Cart/OrderSuccess.js'
 import { loadUser } from './actions/userActions.js';
 import { useSelector } from 'react-redux';
 import { persistReduxStore } from './store.js'
-
+import axios from 'axios'
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
 
 function App() {
+
+  const [stripeApiKey, setStripeApiKey] = useState("")
+  async function getStripeApiKey() {
+    const { data } = await axios.get('/api/v1/stripeapikey')
+    console.log(data);
+    setStripeApiKey(data.stripeApiKey)
+  }
 
   const { user, isAuthenticated } = useSelector((state) => state.user)
   useEffect(() => {
     persistReduxStore.dispatch(loadUser());
+    getStripeApiKey();
     WebFont.load({
       google: {
-        families: ["Roboto", "Droid Sans", "Chilanka"], 
+        families: ["Roboto", "Droid Sans", "Chilanka"],
       }
     });
   }, []);
@@ -45,13 +59,19 @@ function App() {
           <Route exact path='/search' element={<Search />} />
 
           <Route exact path='/login' element={<LoginSignup />} />
-          { isAuthenticated && <Route exact path='/account' element={<Profile user={user} />} /> }
-          { isAuthenticated && <Route exact path='/me/update' element={<UpdateProfile />} /> }
-          { isAuthenticated && <Route exact path='/password/update' element={<UpdatePassword />} /> }
+          {isAuthenticated && <Route exact path='/account' element={<Profile user={user} />} />}
+          {isAuthenticated && <Route exact path='/me/update' element={<UpdateProfile />} />}
+          {isAuthenticated && <Route exact path='/password/update' element={<UpdatePassword />} />}
           <Route exact path='/password/forgot' element={<ForgotPassword />} />
           <Route exact path='/password/reset/:token' element={<ResetPassword />} />
 
           <Route exact path='/cart' element={<Cart />} />
+          {isAuthenticated && <Route exact path='/shipping' element={<Shipping />} />}
+          {isAuthenticated && <Route exact path='/order/confirm' element={<ConfirmOrder />} />}
+          
+          {(isAuthenticated && stripeApiKey) && <Route exact path='/process/payment' element={<Elements stripe={loadStripe(stripeApiKey)}><Payment /></Elements>} />}
+          
+          {isAuthenticated && <Route exact path='/success' element={<OrderSuccess />} />}
         </Routes>
       </Router>
     </div>
