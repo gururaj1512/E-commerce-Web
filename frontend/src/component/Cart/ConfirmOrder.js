@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import CheckoutSteps from '../Cart/CheckoutSteps.js'
 import MetaData from '../layout/MetaData'
 import './ConfirmOrder.css'

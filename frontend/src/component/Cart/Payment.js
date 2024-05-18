@@ -80,8 +80,7 @@ const Payment = () => {
                         id: result.paymentIntent.id,
                         status: result.paymentIntent.status,
                     }
-                    dispatch(createOrder());
-                    
+                    dispatch(createOrder(order));
                     navigate('/success');
                 } else {
                     alert.error("There is a issue while processing payment")

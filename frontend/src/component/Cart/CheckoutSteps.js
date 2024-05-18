@@ -1,4 +1,4 @@
-import { AccountBalance, LibraryAddCheck, LocalShipping, Padding } from '@mui/icons-material'
+import { AccountBalance, LibraryAddCheck, LocalShipping } from '@mui/icons-material'
 import { Step, StepLabel, Stepper, Typography } from '@mui/material'
 import React, { Fragment } from 'react'
 import './CheckoutSteps.css'

@@ -14,7 +14,7 @@ dotenv.config({path: "backend/config/config.env"})
 app.use(express.json());
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(fileUpload());
+app.use(fileUpload({useTempFiles: true}));
 
 // Route imports
 const product = require('./routes/productRoute')

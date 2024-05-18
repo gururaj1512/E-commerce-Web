@@ -1,0 +1,18 @@
+.order-success {
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.order-success > svg {
+    margin-bottom: 20px;
+    height: 100px;
+    width: 100px;
+    color: rgb(255, 115, 0);
+}
+
+.order-success > a {
+    text-decoration: none;
+}

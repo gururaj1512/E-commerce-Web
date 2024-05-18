@@ -1,7 +1,8 @@
 import './App.css';
 import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
+import React, { useEffect, useState } from 'react'
 import WebFont from 'webfontloader'
-import React, { Fragment, useEffect, useState } from 'react'
+
 import Header from './component/layout/Header/Header.js'
 import Home from './component/Home/Home.js'
 import ProductDetails from './component/Product/ProductDetails.js'
@@ -18,19 +19,21 @@ import Shipping from './component/Cart/Shipping.js'
 import ConfirmOrder from './component/Cart/ConfirmOrder.js'
 import Payment from './component/Cart/Payment.js'
 import OrderSuccess from './component/Cart/OrderSuccess.js'
+import MyOrders from './component/Order/MyOrders.js'
+
+import axios from 'axios'
 import { loadUser } from './actions/userActions.js';
 import { useSelector } from 'react-redux';
 import { persistReduxStore } from './store.js'
-import axios from 'axios'
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
+
 
 function App() {
 
   const [stripeApiKey, setStripeApiKey] = useState("")
   async function getStripeApiKey() {
     const { data } = await axios.get('/api/v1/stripeapikey')
-    console.log(data);
     setStripeApiKey(data.stripeApiKey)
   }
 
@@ -72,6 +75,7 @@ function App() {
           {(isAuthenticated && stripeApiKey) && <Route exact path='/process/payment' element={<Elements stripe={loadStripe(stripeApiKey)}><Payment /></Elements>} />}
           
           {isAuthenticated && <Route exact path='/success' element={<OrderSuccess />} />}
+          {isAuthenticated && <Route exact path='/order/me' element={<MyOrders />} />}
         </Routes>
       </Router>
     </div>
