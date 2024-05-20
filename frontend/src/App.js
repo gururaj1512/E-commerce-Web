@@ -1,5 +1,5 @@
 import './App.css';
-import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
+import { Route, Routes, BrowserRouter as Router, Switch } from "react-router-dom";
 import React, { useEffect, useState } from 'react'
 import WebFont from 'webfontloader'
 
@@ -20,6 +20,7 @@ import ConfirmOrder from './component/Cart/ConfirmOrder.js'
 import Payment from './component/Cart/Payment.js'
 import OrderSuccess from './component/Cart/OrderSuccess.js'
 import MyOrders from './component/Order/MyOrders.js'
+import OrderDetails from './component/Order/OrderDetails.js'
 
 import axios from 'axios'
 import { loadUser } from './actions/userActions.js';
@@ -75,7 +76,8 @@ function App() {
           {(isAuthenticated && stripeApiKey) && <Route exact path='/process/payment' element={<Elements stripe={loadStripe(stripeApiKey)}><Payment /></Elements>} />}
           
           {isAuthenticated && <Route exact path='/success' element={<OrderSuccess />} />}
-          {isAuthenticated && <Route exact path='/order/me' element={<MyOrders />} />}
+          {isAuthenticated && <Route exact path='/orders' element={<MyOrders />} />}
+          {isAuthenticated && <Route exact path='/order/:id' element={<OrderDetails />} />}
         </Routes>
       </Router>
     </div>

@@ -6,7 +6,7 @@ import MetaData from '../layout/MetaData.js';
 import { clearErrors, getProduct } from '../../actions/productAction.js'
 import { useDispatch, useSelector } from "react-redux";
 import Footer from '../layout/Footer/Footer.js'
-import Loader from '../layout/Loader/loader.js'
+import Loader from '../layout/Loader/Loader.js'
 import { useAlert } from 'react-alert'
 
 

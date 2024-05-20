@@ -1,6 +1,6 @@
 import './LoginSignup.css'
 import React, { Fragment, useEffect, useRef, useState } from 'react'
-import Loader from '../layout/Loader/loader'
+import Loader from '../layout/Loader/Loader'
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import LockOpenIcon from '@mui/icons-material/LockOpen';

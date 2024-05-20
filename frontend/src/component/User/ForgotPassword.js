@@ -2,7 +2,7 @@ import React from 'react'
 import './ForgotPassword.css'
 import { Fragment, useEffect, useState } from 'react'
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
-import Loader from '../layout/Loader/loader'
+import Loader from '../layout/Loader/Loader'
 import { useSelector, useDispatch } from "react-redux"
 import { forgotPassword, clearErrors } from '../../actions/userActions';
 import { useAlert } from 'react-alert'

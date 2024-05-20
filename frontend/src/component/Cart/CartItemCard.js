@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import './CartItmeCard.css'
+import './CartItemCard.css'
 import {Link} from 'react-router-dom'
 
 

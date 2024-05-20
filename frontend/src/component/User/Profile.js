@@ -3,7 +3,7 @@ import './Profile.css'
 import MetaData from '../layout/MetaData'
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import Loader from '../layout/Loader/loader'
+import Loader from '../layout/Loader/Loader'
 
 const Profile = () => {
     const navigate = useNavigate()

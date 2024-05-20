@@ -4,7 +4,7 @@ import { Fragment, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
-import Loader from '../layout/Loader/loader'
+import Loader from '../layout/Loader/Loader'
 import { useSelector, useDispatch } from "react-redux"
 import { updateProfile, clearErrors, loadUser } from '../../actions/userActions';
 import { useAlert } from 'react-alert'

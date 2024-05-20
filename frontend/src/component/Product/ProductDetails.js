@@ -7,7 +7,7 @@ import { useParams } from 'react-router-dom';
 import ReactStars from 'react-rating-stars-component'
 import Reviewcard from './Reviewcard.js'
 import Footer from '../layout/Footer/Footer.js';
-import Loader from '../layout/Loader/loader.js';
+import Loader from '../layout/Loader/Loader.js';
 import { useAlert } from 'react-alert'
 import MetaData from '../layout/MetaData.js'
 import { addItemsToCart } from '../../actions/cartAction.js'

@@ -8,7 +8,7 @@ import { persistReducer } from 'redux-persist';  // redux-persist for storing da
 import { productDetailReducer, productReducer } from './reducers/productReducer';
 import { forgotPasswordReducer, profileReducer, userReducer } from './reducers/userReducer';
 import { cartReducer } from './reducers/cartReducer';
-import { myOrdersReducer, newOrderReducer } from './reducers/orderReducer';
+import { myOrdersReducer, newOrderReducer, orderDetailsReducer } from './reducers/orderReducer';
 
 const persistConfig = {
     key: 'root',
@@ -23,7 +23,8 @@ const persistCombineReducer = combineReducers({
     forgotPassword: forgotPasswordReducer,
     cart: cartReducer,
     newOrder: newOrderReducer,
-    myOrders: myOrdersReducer
+    myOrders: myOrdersReducer,
+    orderDetails: orderDetailsReducer
 }); // To combine multiple reducers in one
 
 const persistedReducer = persistReducer(persistConfig, persistCombineReducer)
