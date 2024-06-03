@@ -5,7 +5,6 @@ import MetaData from '../layout/MetaData'
 import { Link, useParams } from 'react-router-dom'
 import { Typography } from '@mui/material'
 import { getOrderDetails, clearErrors } from '../../actions/orderAction'
-import loader from '../layout/Loader/Loader'
 import { useAlert } from 'react-alert'
 
 

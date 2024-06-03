@@ -3,7 +3,6 @@ import { DataGrid } from '@mui/x-data-grid';
 import './MyOrders.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { clearErrors, myOrders } from '../../actions/orderAction';
-import loader from '../layout/Loader/Loader';
 import { Link } from 'react-router-dom';
 import { useAlert } from 'react-alert';
 import { Typography } from '@mui/material';

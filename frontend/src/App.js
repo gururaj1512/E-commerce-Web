@@ -1,5 +1,5 @@
 import './App.css';
-import { Route, Routes, BrowserRouter as Router, Switch } from "react-router-dom";
+import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
 import React, { useEffect, useState } from 'react'
 import WebFont from 'webfontloader'
 
@@ -51,7 +51,7 @@ function App() {
 
 
   return (
-    <div className="App">
+    <div className="App relative">
       <Router>
         <Header user={user} />
         <Routes>

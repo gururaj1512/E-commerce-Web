@@ -1,27 +1,28 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import ReactStars from 'react-rating-stars-component'
-import './Product.css'
+import { Rating } from '@mui/material'
 
 
 const ProductCard = ({ product }) => {
     const options = {
-        edit: false,
-        color: "#ff5e1430",
-        acticeColor: "#ff5e14",
-        size: window.innerWidth < 600 ? 20 : 25,
+        size: "small",
         value: product.ratings,
-        isHalf: true
+        precision: 0.5,
+        readOnly: true,
     }
     return (
-        <div className=''>
+        <div className='m-4'>
             <Link className='productCard' to={`/product/${product._id}`}>
-                <img src={product.images[0].url} alt={product.name} />
-                <p>{product.name}</p>
-                <div className='reviewDetails'>
-                    <ReactStars {...options} /><span>({product.numOfReviews} reviews)</span>
+                <div className='relative'>
+                    <div className=' rounded-md h-full w-full absolute top-0 right-0 hover:opacity-40 hover:bg-black'>
+                    </div>
+                    <img src={product.images[0].url} alt={product.name} className='w-100 h-60 object-none object-center rounded-md' />
                 </div>
-                <span>{`₹${product.price}`}</span>
+                <p className='mt-2 text-sm text-semibold'>{product.name}</p>
+                <span className='my-4 text-red-500 font-bold text-md'>{`₹${product.price}`}</span>
+                <div className='reviewDetails flex items-center'>
+                    <Rating {...options} /><span className='noOfReviews text-xs'>({product.numOfReviews} reviews)</span>
+                </div>
             </Link>
         </div>
     )

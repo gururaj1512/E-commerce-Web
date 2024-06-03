@@ -1,15 +1,26 @@
 import React from 'react'
-import './Header.css'
 import logo from '../../../images/logo.png'
-import Login from '../../../images/login.png'
-import Logout from '../../../images/logout.png'
-import Orders from '../../../images/orders.png'
-import Cart from '../../../images/cart.png'
+import small_logo from '../../../images/small_logo.png'
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useAlert } from 'react-alert'
 import { logout } from '../../../actions/userActions'
 import { useDispatch } from 'react-redux'
+import StoreIcon from '@mui/icons-material/Store';
+import LocalMallIcon from '@mui/icons-material/LocalMall';
+import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import { IconButton } from '@mui/material';
+import { useLocation } from 'react-router-dom'
+
 
 const Header = ({ user }) => {
+    const location = useLocation()
+    function current_loc() {
+        if (location.pathname === '/login' ) {
+            return 'hidden'
+        }
+    }
+
     const alert = useAlert()
     const dispatch = useDispatch()
 
@@ -19,50 +30,32 @@ const Header = ({ user }) => {
     }
 
     return (
-        <div>
-            <nav className="navbar navbar-expand-lg bg-body-tertiary" style={{ padding: 0 }}>
-                <div className="container-fluid" style={{ backgroundColor: "#ffffff" }}>
-                    <a className="navbar-brand" href="/"><img src={logo} className='logo' alt="" /></a>
-                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span className="navbar-toggler-icon"></span>
-                    </button>
-                    <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li className="nav-item">
-                                <a className="nav-link active" aria-current="page" href="/">Home</a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="/products">Products</a>
-                            </li>
-                            {/*<li className="nav-item dropdown">
-                                    <a className="nav-link dropdown-toggle" href="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Dropdown
-                                    </a>
-                                    <ul className="dropdown-menu">
-                                        <li><a className="dropdown-item" href="/">Action</a></li>
-                                        <li><a className="dropdown-item" href="/">Another action</a></li>
-                                        <li><hr className="dropdown-divider"/></li>
-                                        <li><a className="dropdown-item" href="/">Something else here</a></li>
-                                    </ul>
-                                </li>*/}
-                        </ul>
-                        <form className="d-flex" role="search">
-                            {/*<input className="search-input form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-                                <button className="btn search-button" type="submit"><FaSearch/></button>*/}
-                            <a href="/orders">
-                                <img className='login' src={Orders} alt="" />
-                            </a>
-                            <a href="/cart">
-                                <img className='login' src={Cart} alt="" />
-                            </a>
-                            <a href="/login">
-                                <img className='login' src={Login} alt="" />
-                            </a>
-                            <img className='login' src={Logout} alt="" onClick={logoutUser}/>
-                        </form>
+        <div className={`fixed top-4 z-10 w-full ${current_loc()}`}>
+            <div className='w-11/12 h-12 sm:h-9 bg-slate-100 border-l-4 border-slate-100 mx-auto rounded-lg'>
+                <div className='w-auto h-full flex flex-row justify-between relative'>
+                    <a href="/"><img src={logo} alt="" className='h-12 sm:h-9 min-w-10 rounded-lg md:hidden sm:hidden' /></a>
+                    <a href="/"><img src={small_logo} alt="" className='h-12 sm:h-9 min-w-10 rounded-lg lg:hidden xl:hidden absolute top-0 left-0' /></a>
+                    <div className='w-1/2 md:w-1/3 sm:1/3 h-full flex items-center justify-evenly'>
+                        <a href="/products" className='hover:text-red-500 hover:bg-slate-800 px-2 py-1 rounded-md transition-all'>
+                            <StoreIcon fontSize='small' sx={{color: '#DB4444'}}/>
+                            <span className='ml-1 text-sm font-semibold hover:font-medium sm:hidden md:hidden'>PRODUCTS</span>
+                        </a>
+                        <a href="/cart" className='hover:text-red-500 hover:bg-slate-800 px-2 py-1 rounded-md transition-all'>
+                            <ShoppingCartIcon fontSize='small' sx={{color: '#DB4444'}}/>
+                            <span className='ml-1 text-sm font-semibold hover:font-medium sm:hidden md:hidden'>CART</span>
+                        </a>
+                        <a href="/orders" className='hover:text-red-500 hover:bg-slate-800 px-2 py-1 rounded-md transition-all'>
+                            <LocalMallIcon fontSize='small' sx={{color: '#DB4444'}}/>
+                            <span className='ml-1 text-sm font-semibold hover:font-medium sm:hidden md:hidden'>ORDERS</span>
+                        </a>
+                    </div>
+
+                    <div className='w-1/12h-full flex items-center justify-self-end mr-2 sm:mr-0'>
+                        <a href="/login"><IconButton children={<ManageAccountsIcon/>} /></a>
+                        <IconButton children={<ExitToAppIcon/>} onClick={logoutUser} />
                     </div>
                 </div>
-            </nav>
+            </div>
         </div>
     )
 }

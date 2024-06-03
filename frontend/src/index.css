@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.main-button{
+    @apply bg-white hover:bg-transparent hover:text-main-red text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow
+}
+
+. css-1m9128y {
+    @apply py-2
+}
+
+@media screen and (width <= 900px ) {
+    .css-1m9128y {
+        @apply py-1
+    }
+}
+
+textarea:focus, input:focus{
+    outline: none;
+    border: 2px solid #DB4444;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+ 
+::-webkit-scrollbar-track {
+    background-color: #ebebeb;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: #334155; 
+}
