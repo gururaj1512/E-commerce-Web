@@ -9,12 +9,13 @@ const fileUpload = require('express-fileupload');
 
 const errorMiddleware = require('./middleware/error')
 const dotenv = require('dotenv')
-dotenv.config({path: "backend/config/config.env"})
+dotenv.config({ path: "backend/config/config.env" })
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(fileUpload({useTempFiles: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(fileUpload({ useTempFiles: true }));
+app.use(express.json({limit: '50mb'}));
 
 // Route imports
 const product = require('./routes/productRoute')

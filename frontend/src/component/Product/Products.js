@@ -19,11 +19,12 @@ const categories = [
     "Laptop",
     "Footwear",
     "Mobile",
-    "Sample",
+    "Food",
     "Camera",
     "Vehicles",
     "Tops",
-    "Bottoms"
+    "Bottoms",
+    "Other"
 ]
 
 

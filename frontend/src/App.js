@@ -22,6 +22,10 @@ import OrderSuccess from './component/Cart/OrderSuccess.js'
 import MyOrders from './component/Order/MyOrders.js'
 import OrderDetails from './component/Order/OrderDetails.js'
 
+import Dashboard from './component/Admin/Dashboard.js'
+import Productlist from './component/Admin/Productlist.js'
+import NewProduct from './component/Admin/NewProduct.js'
+
 import axios from 'axios'
 import { loadUser } from './actions/userActions.js';
 import { useSelector } from 'react-redux';
@@ -33,12 +37,14 @@ import { loadStripe } from '@stripe/stripe-js';
 function App() {
 
   const [stripeApiKey, setStripeApiKey] = useState("")
+
   async function getStripeApiKey() {
     const { data } = await axios.get('/api/v1/stripeapikey')
     setStripeApiKey(data.stripeApiKey)
   }
 
-  const { user, isAuthenticated } = useSelector((state) => state.user)
+  const { user, isAuthenticated, isAdmin } = useSelector((state) => state.user)
+
   useEffect(() => {
     persistReduxStore.dispatch(loadUser());
     getStripeApiKey();
@@ -78,7 +84,11 @@ function App() {
           {isAuthenticated && <Route exact path='/success' element={<OrderSuccess />} />}
           {isAuthenticated && <Route exact path='/orders' element={<MyOrders />} />}
           {isAuthenticated && <Route exact path='/order/:id' element={<OrderDetails />} />}
-        </Routes>
+
+          {isAuthenticated && isAdmin && <Route exact path='/admin/dashboard' element={<Dashboard />} />}
+          {isAuthenticated && isAdmin && <Route exact path='/admin/products' element={<Productlist />} />}
+          {isAuthenticated && isAdmin && <Route exact path='/admin/product' element={<NewProduct />} />}
+          </Routes>
       </Router>
     </div>
   );

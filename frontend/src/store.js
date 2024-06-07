@@ -5,7 +5,7 @@ import { composeWithDevTools } from 'redux-devtools-extension'  // For Redux Dev
 import storage from 'redux-persist/lib/storage';
 import { persistReducer } from 'redux-persist';  // redux-persist for storing data in state
 
-import { newReviewReducer, productDetailReducer, productReducer } from './reducers/productReducer';
+import { newProductReducer, newReviewReducer, productDetailReducer, productReducer, productsReducer } from './reducers/productReducer';
 import { forgotPasswordReducer, profileReducer, userReducer } from './reducers/userReducer';
 import { cartReducer } from './reducers/cartReducer';
 import { myOrdersReducer, newOrderReducer, orderDetailsReducer } from './reducers/orderReducer';
@@ -16,7 +16,7 @@ const persistConfig = {
 }
 
 const persistCombineReducer = combineReducers({
-    products: productReducer,
+    products: productsReducer,
     productDetails: productDetailReducer,
     user: userReducer,
     profile: profileReducer,
@@ -25,7 +25,9 @@ const persistCombineReducer = combineReducers({
     newOrder: newOrderReducer,
     myOrders: myOrdersReducer,
     orderDetails: orderDetailsReducer,
-    newReview: newReviewReducer
+    newReview: newReviewReducer,
+    newProduct: newProductReducer,
+    product: productReducer
 }); // To combine multiple reducers in one
 
 const persistedReducer = persistReducer(persistConfig, persistCombineReducer)

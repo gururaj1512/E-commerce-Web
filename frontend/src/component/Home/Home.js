@@ -7,7 +7,7 @@ import Footer from '../layout/Footer/Footer.js'
 import Loader from '../layout/Loader/Loader.js'
 import { useAlert } from 'react-alert'
 import Iphone from "../../images/iphone_display.png";
-import { ArrowRight } from '@mui/icons-material';
+import { ArrowRight, Dashboard } from '@mui/icons-material';
 import MainDisplay from "../../images/main-display.jpg";
 import SearchIcon from '@mui/icons-material/Search';
 
@@ -40,7 +40,10 @@ const Home = () => {
                                     <button className='main-button'>View Products</button>
                                 </a>
                                 <a href="/search">
-                                    <div className='w-12 h-12 sm:w-8 sm:h-8 rounded-full bg-main-red absolute bottom-5 right-10 flex items-center justify-center hover:scale-105 hover:bg-slate-800 hover:border-2 hover:border-main-red'><SearchIcon sx={{color: '#ebebeb'}} /></div>
+                                    <div className='w-12 h-12 sm:w-8 sm:h-8 rounded-full bg-main-red absolute bottom-6 right-10 sm:right-5 flex items-center justify-center hover:scale-105 hover:bg-slate-800 hover:border-2 hover:border-main-red'><SearchIcon sx={{color: '#ebebeb'}} /></div>
+                                </a>
+                                <a href="/admin/dashboard">
+                                    <div className='w-12 h-12 sm:w-8 sm:h-8 rounded-full bg-main-red absolute bottom-20 right-10 sm:right-5 flex items-center justify-center hover:scale-105 hover:bg-slate-800 hover:border-2 hover:border-main-red'><Dashboard sx={{color: '#ebebeb'}} /></div>
                                 </a>
                             </div>
                             <img src={MainDisplay} alt="" className='h-screen w-screen object-cover' />
@@ -76,7 +79,6 @@ const Home = () => {
                             </div>
                         </div>
                     </div>
-                    <Footer />
                 </Fragment>
             }
         </Fragment>
