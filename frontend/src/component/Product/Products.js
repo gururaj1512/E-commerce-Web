@@ -16,17 +16,15 @@ import Select from '@mui/material/Select';
 
 
 const categories = [
-    "Laptop",
-    "Footwear",
-    "Mobile",
-    "Food",
-    "Camera",
-    "Vehicles",
+    "Electronics",
     "Tops",
-    "Bottoms",
+    "Footwear",
+    "Bottom",
+    "Vehicles",
+    "Books",
+    "Food",
     "Other"
-]
-
+];
 
 const Products = () => {
     const alert = useAlert();
@@ -125,20 +123,20 @@ const Products = () => {
 
                 </div>
 
-                {(resultPerPage < count) && <div className='pagination'>
+                {(resultPerPage < count) && <div className='pagination mt-5 mb-10'>
                     <Pagination
                         activePage={currentPage}
                         itemsCountPerPage={resultPerPage}
                         totalItemsCount={productsCount}
                         onChange={setCurrentPageNo}
-                        nextPageText={"Next"}
-                        prevPageText={"Prev"}
-                        firstPageText={"1st"}
-                        lastPageText={"Last"}
-                        itemClass='page-item'
-                        linkClass='page-link'
-                        activeClass='pageItemActive'
-                        activeLinkClass='pageLinkActive'
+                        nextPageText="Next"
+                        prevPageText="Prev"
+                        firstPageText="1st"
+                        lastPageText="Last"
+                        itemClass="page-item"
+                        linkClass="page-link"
+                        activeClass="pageItemActive"
+                        activeLinkClass="pageLinkActive"
                     />
                 </div>}
             </Fragment>}
