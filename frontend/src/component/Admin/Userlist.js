@@ -6,44 +6,45 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Delete, Edit } from '@mui/icons-material';
 import { Button } from '@mui/material';
 import MetaData from '../layout/MetaData';
-import { clearErrors, getAdminProduct, deleteProduct } from '../../actions/productAction';
-import { DELETE_PRODUCT_RESET } from '../../constants/productConstants';
+import { getAllUsers, clearErrors, deleteUser } from '../../actions/userActions';
+import { DELETE_USER_RESET } from '../../constants/userConstants';
 
 
-const Productlist = () => {
+const Userlist = () => {
 
     const dispatch = useDispatch();
     const alert = useAlert();
     const navigate = useNavigate();
 
-    const { error, products } = useSelector((state) => state.products);
-    const { error: deleteError, isDeleted } = useSelector((state) => state.product);
+    const { error, users } = useSelector((state) => state.allUsers);
+    const { error: deleteError, message, isDeleted } = useSelector((state) => state.profile);
 
-    const deleteProductHandler = (id) => {
-        dispatch(deleteProduct(id))
+    const deleteUserHandler = (id) => {
+        dispatch(deleteUser(id))
     }
 
     let columns = [
-        { field: "id", headerName: "Product ID", minWidth: 150, flex: 0.6 },
+        { field: "id", headerName: "User ID", minWidth: 150, flex: 0.5 },
+        {
+            field: "email",
+            headerName: "Email",
+            minWidth: 100,
+            flex: 0.4,
+        },
         {
             field: "name",
             headerName: "Name",
-            minWidth: 150,
-            flex: 0.6,
+            minWidth: 100,
+            flex: 0.4,
         },
         {
-            field: "stock",
-            headerName: "Stock",
-            type: "number",
-            minWidth: 50,
-            flex: 0.2,
-        },
-        {
-            field: "price",
-            headerName: "Price",
-            type: "number",
+            field: "role",
+            headerName: "Role",
             minWidth: 60,
-            flex: 0.3,
+            flex: 0.2,
+            cellClassName: (params) => {
+                return params.api.getCellValue(params.id, 'status') === "admin" ? "redColor" : "greenColor"
+            }
         },
         {
             field: "actions",
@@ -55,10 +56,10 @@ const Productlist = () => {
             renderCell: (params) => {
                 return (
                     <Fragment>
-                        <Link to={`/admin/product/${params.id}`}>
+                        <Link to={`/admin/user/${params.id}`}>
                             <Edit sx={{ color: '#1e293b' }} />
                         </Link>
-                        <Button sx={{ padding: 0, minWidth: '24px' }} onClick={() => deleteProductHandler(params.id)}>
+                        <Button sx={{ padding: 0, minWidth: '24px' }} onClick={() => deleteUserHandler(params.id)}>
                             <Delete sx={{ color: '#dc2626' }} />
                         </Button>
                     </Fragment>
@@ -69,11 +70,11 @@ const Productlist = () => {
 
     let rows = [];
 
-    products && products.forEach((item) => {
+    users && users.forEach((item) => {
         rows.push({
             id: item._id,
-            stock: item.stock,
-            price: item.price,
+            role: item.role,
+            email: item.email,
             name: item.name,
         });
     });
@@ -88,19 +89,19 @@ const Productlist = () => {
             dispatch(clearErrors)
         }
         if (isDeleted) {
-            alert.success('Product deleted successfully')
-            navigate('/admin/dashboard')
-            dispatch({type : DELETE_PRODUCT_RESET})
+            alert.success(message)
+            navigate('/admin/users')
+            dispatch({type : DELETE_USER_RESET})
         }
-        dispatch(getAdminProduct())
-    }, [dispatch, alert, error, deleteError, navigate, isDeleted])
+        dispatch(getAllUsers())
+    }, [dispatch, alert, error, deleteError, navigate, isDeleted, message])
 
     return (
         <Fragment>
-            <MetaData title={`All Products --> Admin`}></MetaData>
+            <MetaData title={`All Users --> Admin`}></MetaData>
             <div className='max-w-100 h-auto pt-20 sm:pt-16'>
                 <div className='w-11/12 mx-auto'>
-                    <h1 className='text-center text-2xl mb-2'>All Products</h1>
+                    <h1 className='text-center text-2xl mb-2'>All Users</h1>
                     <DataGrid
                         rows={rows}
                         columns={columns}
@@ -116,6 +117,14 @@ const Productlist = () => {
                             '& .css-yrdy0g-MuiDataGrid-columnHeaderRow': {
                                 backgroundColor: 'red',
                                 background: 'red'
+                            },
+                            '& .redColor': {
+                                color: "red",
+                                fontWeight: 500,
+                            },
+                            '& .greenColor': {
+                                color: "green",
+                                fontWeight: 500,
                             }
                         }}
                     />
@@ -125,4 +134,4 @@ const Productlist = () => {
     )
 }
 
-export default Productlist
+export default Userlist

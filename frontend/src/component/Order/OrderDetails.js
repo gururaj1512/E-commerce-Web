@@ -37,7 +37,7 @@ const OrderDetails = () => {
                             <div className="orderDetailsContainerBox">
                                 <div>
                                     <p>Name:</p>
-                                    <span></span>
+                                    <span>{order.user && order.user.name}</span>
                                 </div>
                                 <div>
                                     <p>Phone:</p>

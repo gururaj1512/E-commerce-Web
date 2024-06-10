@@ -26,6 +26,7 @@ import Dashboard from './component/Admin/Dashboard.js'
 import Productlist from './component/Admin/Productlist.js'
 import NewProduct from './component/Admin/NewProduct.js'
 import UpdateProduct from './component/Admin/UpdateProduct.js'
+import Userlist from './component/Admin/Userlist.js'
 
 import axios from 'axios'
 import { loadUser } from './actions/userActions.js';
@@ -90,7 +91,8 @@ function App() {
           {isAuthenticated && isAdmin && <Route exact path='/admin/products' element={<Productlist />} />}
           {isAuthenticated && isAdmin && <Route exact path='/admin/product' element={<NewProduct />} />}
           {isAuthenticated && isAdmin && <Route exact path='/admin/product/:id' element={<UpdateProduct />} />}
-          </Routes>
+          {isAuthenticated && isAdmin && <Route exact path='/admin/users' element={<Userlist />} />}
+        </Routes>
       </Router>
     </div>
   );

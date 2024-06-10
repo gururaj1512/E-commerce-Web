@@ -66,7 +66,7 @@ const Cart = () => {
                                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h16" />
                                                     </svg>
                                                 </button>
-                                                <input id="quantity-input" type="number" value={item.quantity} data-input-counter aria-describedby="helper-text-explanation" class="bg-gray-50 border-x-0 border-gray-300 text-center text-gray-900 text-sm sm:text-xs flex justify-center h-8 w-8 sm:w-6 sm:h-6" readOnly />
+                                                <input id="quantity-input" type="number" value={item.quantity} data-input-counter aria-describedby="helper-text-explanation" class="bg-gray-50 border-x-0 border-gray-300 text-center text-gray-900 text-sm sm:text-xs flex justify-center p-0 h-8 w-8 sm:w-6 sm:h-6" readOnly />
                                                 <button onClick={() => increaseQuantity(item.product, item.quantity, item.stock)} type="button" id="increment-button" data-input-counter-increment="quantity-input" class="hover:text-slate-900 text-slate-50 bg-main-red hover:border-2 hover:border-slate-500 hover:bg-slate-50 transition-all w-8 h-8 sm:w-6 sm:h-6 focus:ring-gray-100 focus:ring-2 focus:outline-none flex items-center justify-center">
                                                     <svg class="w-3 h-3 sm:w-2 sm:h-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
                                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16" />

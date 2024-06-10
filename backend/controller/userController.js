@@ -246,6 +246,11 @@ exports.deleteUser = catchAsyncError(async (req, res, next) => {
       new ErrorHander(`User does not exist with Id: ${req.params.id}`, 400)
     );
   }
+
+  // Deleting from cloudinary
+  const imageId = user.avatar.public_id;
+  await cloudinary.v2.uploader.destroy(imageId)
+
   await user.deleteOne();
   res.status(200).json({
     success: true,

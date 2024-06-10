@@ -3,14 +3,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import { clearErrors, updateProduct, getProductDetails } from '../../actions/productAction'
 import { useAlert } from 'react-alert'
 import MetaData from '../layout/MetaData'
-import { AccountTree, AttachMoney, Description, Spellcheck, Storage } from '@mui/icons-material'
+import { AttachMoney, Description, Spellcheck, Storage } from '@mui/icons-material'
 import Sidebar from './Sidebar'
 import { UPDATE_PRODUCT_RESET } from '../../constants/productConstants'
 import { useNavigate, useParams } from 'react-router-dom'
 import Input from '@mui/joy/Input';
 import Textarea from '@mui/joy/Textarea';
-import Select from '@mui/joy/Select';
-import Option from '@mui/joy/Option';
 
 
 const UpdateProduct = () => {

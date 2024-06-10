@@ -6,42 +6,45 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Delete, Edit } from '@mui/icons-material';
 import { Button } from '@mui/material';
 import MetaData from '../layout/MetaData';
-import { clearErrors, getAdminProduct, deleteProduct } from '../../actions/productAction';
-import { DELETE_PRODUCT_RESET } from '../../constants/productConstants';
+import { deleteOrder, getAllOrders, clearErrors } from '../../actions/orderAction';
+import { DELETE_ORDER_RESET } from '../../constants/orderConstants';
 
 
-const Productlist = () => {
+const Orderlist = () => {
 
     const dispatch = useDispatch();
     const alert = useAlert();
     const navigate = useNavigate();
 
-    const { error, products } = useSelector((state) => state.products);
-    const { error: deleteError, isDeleted } = useSelector((state) => state.product);
+    const { error, orders } = useSelector((state) => state.allOrders);
+    const { error: deleteError, isDeleted } = useSelector((state) => state.order);
 
-    const deleteProductHandler = (id) => {
-        dispatch(deleteProduct(id))
+    const deleteOrderHandler = (id) => {
+        dispatch(deleteOrder(id))
     }
 
     let columns = [
-        { field: "id", headerName: "Product ID", minWidth: 150, flex: 0.6 },
+        { field: "id", headerName: "Order ID", minWidth: 150, flex: 0.6 },
         {
-            field: "name",
-            headerName: "Name",
+            field: "status",
+            headerName: "Status",
             minWidth: 150,
             flex: 0.6,
+            cellClassName: (params) => {
+                return params.api.getCellValue(params.id, 'status') === "Processing" ? "redColor" : "greenColor"
+            }
         },
         {
-            field: "stock",
-            headerName: "Stock",
-            type: "number",
+            field: 'itemsQty',
+            headerName: 'Items Qty',
+            type: 'number',
             minWidth: 50,
             flex: 0.2,
         },
         {
-            field: "price",
-            headerName: "Price",
-            type: "number",
+            field: 'amount',
+            headerName: 'Amount',
+            type: 'number',
             minWidth: 60,
             flex: 0.3,
         },
@@ -55,10 +58,10 @@ const Productlist = () => {
             renderCell: (params) => {
                 return (
                     <Fragment>
-                        <Link to={`/admin/product/${params.id}`}>
+                        <Link to={`/admin/order/${params.id}`}>
                             <Edit sx={{ color: '#1e293b' }} />
                         </Link>
-                        <Button sx={{ padding: 0, minWidth: '24px' }} onClick={() => deleteProductHandler(params.id)}>
+                        <Button sx={{ padding: 0, minWidth: '24px' }} onClick={() => deleteOrderHandler(params.id)}>
                             <Delete sx={{ color: '#dc2626' }} />
                         </Button>
                     </Fragment>
@@ -69,12 +72,12 @@ const Productlist = () => {
 
     let rows = [];
 
-    products && products.forEach((item) => {
+    orders && orders.forEach((item) => {
         rows.push({
             id: item._id,
-            stock: item.stock,
-            price: item.price,
-            name: item.name,
+            itemsQty: item.orderItems.length,
+            amount: item.totalPrice,
+            status: item.orderStatus,
         });
     });
 
@@ -88,19 +91,19 @@ const Productlist = () => {
             dispatch(clearErrors)
         }
         if (isDeleted) {
-            alert.success('Product deleted successfully')
+            alert.success('Order deleted successfully')
             navigate('/admin/dashboard')
-            dispatch({type : DELETE_PRODUCT_RESET})
+            dispatch({type : DELETE_ORDER_RESET})
         }
-        dispatch(getAdminProduct())
+        dispatch(getAllOrders())
     }, [dispatch, alert, error, deleteError, navigate, isDeleted])
 
     return (
         <Fragment>
-            <MetaData title={`All Products --> Admin`}></MetaData>
+            <MetaData title={`All Orders --> Admin`}></MetaData>
             <div className='max-w-100 h-auto pt-20 sm:pt-16'>
                 <div className='w-11/12 mx-auto'>
-                    <h1 className='text-center text-2xl mb-2'>All Products</h1>
+                    <h1 className='text-center text-2xl mb-2'>All Orders</h1>
                     <DataGrid
                         rows={rows}
                         columns={columns}
@@ -116,6 +119,14 @@ const Productlist = () => {
                             '& .css-yrdy0g-MuiDataGrid-columnHeaderRow': {
                                 backgroundColor: 'red',
                                 background: 'red'
+                            },
+                            '& .redColor': {
+                                color: "red",
+                                fontWeight: 500,
+                            },
+                            '& .greenColor': {
+                                color: "green",
+                                fontWeight: 500,
                             }
                         }}
                     />
@@ -125,4 +136,4 @@ const Productlist = () => {
     )
 }
 
-export default Productlist
+export default Orderlist
