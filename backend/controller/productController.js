@@ -213,19 +213,36 @@ exports.deleteReview = catchAsyncError(async (req, res, next) => {
         (rev) => rev._id.toString() !== req.query.id.toString()
     )
 
-    let totalSum = 0;
+    let avg = 0;
+
     reviews.forEach((rev) => {
-        totalSum += rev.rating
+        avg += rev.rating;
     });
-    const ratings = totalSum / reviews.length;
+    let ratings = 0;
+
+    if (reviews.length === 0) {
+        ratings = 0;
+    } else {
+        ratings = avg / reviews.length;
+    }
+
     const numOfReviews = reviews.length;
 
-    await Product.findByIdAndUpdate(req.query.productId, {
-        reviews, ratings, numOfReviews
-    }, {
-        new: true, runValidators: true, useFindAndModify: false
-    })
+    await Product.findByIdAndUpdate(
+        req.query.productId,
+        {
+            reviews,
+            ratings,
+            numOfReviews,
+        },
+        {
+            new: true,
+            runValidators: true,
+            useFindAndModify: false,
+        }
+    );
+
     res.status(200).json({
-        success: true
-    })
+        success: true,
+    });
 })
