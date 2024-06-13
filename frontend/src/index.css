@@ -16,8 +16,8 @@
     }
 }
 
-textarea:focus, input:focus{
-    outline: none;
+textarea:focus, input:focus, input:active{
+    border: 0px;
 }
 
 ::-webkit-scrollbar {
@@ -34,6 +34,14 @@ textarea:focus, input:focus{
     -webkit-border-radius: 10px;
     border-radius: 10px;
     background: #334155; 
+}
+
+input::-webkit-file-upload-button {
+    cursor: pointer;
+    width: 50%;
+    height: 100%;
+    outline: none;
+    border: none;
 }
 
 .paginationBox {

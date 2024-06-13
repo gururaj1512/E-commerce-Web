@@ -35,22 +35,22 @@ const Header = ({ user }) => {
                 <div className='w-auto h-full flex flex-row justify-between relative'>
                     <a href="/"><img src={logo} alt="" className='h-12 sm:h-9 min-w-10 rounded-lg md:hidden sm:hidden' /></a>
                     <a href="/"><img src={small_logo} alt="" className='h-12 sm:h-9 min-w-10 rounded-lg lg:hidden xl:hidden absolute top-0 left-0' /></a>
-                    <div className='w-1/2 md:w-1/3 sm:1/3 h-full flex items-center justify-evenly'>
-                        <a href="/products" className='hover:text-red-500 hover:bg-slate-800 px-2 py-1 rounded-md transition-all'>
+                    <div className='w-1/2 md:w-1/3 sm:w-1/4 h-full flex items-center justify-evenly'>
+                        <a href="/products" className='hover:text-red-500 hover:bg-slate-800 sm:px-1 px-1 py-1 rounded-md transition-all'>
                             <StoreIcon fontSize='small' sx={{color: '#DB4444'}}/>
                             <span className='ml-1 text-sm font-semibold hover:font-medium sm:hidden md:hidden'>PRODUCTS</span>
                         </a>
-                        <a href="/cart" className='hover:text-red-500 hover:bg-slate-800 px-2 py-1 rounded-md transition-all'>
+                        <a href="/cart" className='hover:text-red-500 hover:bg-slate-800 sm:px-1 px-1 py-1 rounded-md transition-all'>
                             <ShoppingCartIcon fontSize='small' sx={{color: '#DB4444'}}/>
                             <span className='ml-1 text-sm font-semibold hover:font-medium sm:hidden md:hidden'>CART</span>
                         </a>
-                        <a href="/orders" className='hover:text-red-500 hover:bg-slate-800 px-2 py-1 rounded-md transition-all'>
+                        <a href="/orders" className='hover:text-red-500 hover:bg-slate-800 sm:px-1 px-1 py-1 rounded-md transition-all'>
                             <LocalMallIcon fontSize='small' sx={{color: '#DB4444'}}/>
                             <span className='ml-1 text-sm font-semibold hover:font-medium sm:hidden md:hidden'>ORDERS</span>
                         </a>
                     </div>
 
-                    <div className='w-1/12h-full flex items-center justify-self-end mr-2 sm:mr-0'>
+                    <div className='h-full flex items-center justify-self-end mr-2 sm:mr-0'>
                         <a href="/login"><IconButton children={<ManageAccountsIcon/>} /></a>
                         <IconButton children={<ExitToAppIcon/>} onClick={logoutUser} />
                     </div>

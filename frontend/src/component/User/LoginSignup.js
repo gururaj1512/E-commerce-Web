@@ -1,14 +1,14 @@
-import './LoginSignup.css'
+import './Styles/Transitions.css'
 import React, { Fragment, useEffect, useRef, useState } from 'react'
 import Loader from '../layout/Loader/Loader'
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
-import LockOpenIcon from '@mui/icons-material/LockOpen';
-import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 
 import { useSelector, useDispatch } from "react-redux"
 import { login, register, clearErrors } from '../../actions/userActions';
 import { useAlert } from 'react-alert'
+import { Lock, Mail, Person } from '@mui/icons-material';
+import Input from '@mui/joy/Input';
+import loginDisplay from '../../images/loginDisplay.jpg'
 
 
 const LoginSignup = () => {
@@ -102,55 +102,52 @@ const LoginSignup = () => {
         <Fragment>
             {
                 loading ? <Loader /> : <Fragment>
-                    <div className="LoginSignupContainer">
-                        <div className="LoginSignupBox">
-                            <div className='slider-btns'>
-                                <div className="login_signup_toggle">
-                                    <p onClick={(e) => switchTabs(e, "login")}>LOGIN</p>
-                                    <p onClick={(e) => switchTabs(e, "register")}>REGISTER</p>
+                    <div className="w-screen h-screen flex sm:flex-col-reverse items-center justify-center bg-white">
+                        <div className="w-1/2 sm:w-full h-full sm:hidden">
+                            <img src={loginDisplay} alt="" className='h-full w-full object-fill' />
+                        </div>
+                        <div className="w-1/2 sm:w-5/6 flex items-center justify-center">
+                            <div className="w-2/3 sm:w-full h-80 box-border overflow-hidden bg-slate-100 rounded-xl">
+                                <div className='slider-btns'>
+                                    <div className="flex h-8">
+                                        <p onClick={(e) => switchTabs(e, "login")} className='text-black text-sm grid place-items-center p-5 w-full cursor-pointer transition-all hover:text-main-red'>LOGIN</p>
+                                        <p onClick={(e) => switchTabs(e, "register")} className='text-black text-sm grid place-items-center p-5 w-full cursor-pointer transition-all hover:text-main-red'>REGISTER</p>
+                                    </div>
+                                    <button ref={switcherTab} className='bg-main-red h-1 w-1/2 transition-all duration-500 rounded-full'></button>
                                 </div>
-                                <button ref={switcherTab}></button>
+                                <form ref={loginTab} onSubmit={loginSubmit} className="flex items-center flex-col m-auto padding-6 h-5/6 transition-all duration-500 pt-2  pb-2">
+                                    <div className="flex items-center w-5/6 my-2">
+                                        <Input startDecorator={<Mail />} type="email" placeholder='Email' required value={loginEmail} onChange={(e) => {
+                                            setLoginEmail(e.target.value)
+                                        }} className='w-full' />
+                                    </div>
+                                    <div className="flex items-center w-5/6 my-2">
+                                        <Input startDecorator={<Lock />} type="password" placeholder='Password' required value={loginPassword} onChange={(e) => {
+                                            setLoginPassword(e.target.value)
+                                        }} className='w-full' />
+                                    </div>
+                                    <div className="flex items-center w-5/6 mt-20">
+                                        <Input type="submit" value={"Login"} className='w-1/2 hover:bg-red-700 transition-all duration-300 py-2' sx={{backgroundColor: '#DB4444', color: '#ebebeb'}} />
+                                        <Link to='/password/forgot' className='w-1/2 text-sm hover:text-blue-500 text-blue-950 text-end'>Forgot password</Link>
+                                    </div>
+                                </form>
+                                <form className="flex items-center flex-col m-auto padding-6 h-5/6 transition-all duration-500 pb-2" ref={registerTab} encType="multipart/form-data" onSubmit={registerSubmit}>
+                                    <div className="flex items-center w-5/6 my-2">
+                                        <Input startDecorator={<Person />} type="text" placeholder="Name" required name="name" value={name} onChange={registerDataChange} className='w-full' />
+                                    </div>
+                                    <div className="flex items-center w-5/6 my-2">
+                                        <Input startDecorator={<Mail />} type="email" placeholder="Email" required name="email" value={email} onChange={registerDataChange} className='w-full' />
+                                    </div>
+                                    <div className="flex items-center w-5/6 my-2">
+                                        <Input startDecorator={<Lock />} type="password" placeholder="Password" required name="password" value={password} onChange={registerDataChange} className='w-full' />
+                                    </div>
+                                    <div className="flex items-center w-5/6 my-2">
+                                        <img className='h-9 w-9 mr-4 rounded-full' src={avatarPreview} alt="Avatar Preview" />
+                                        <Input type="file" name="avatar" accept="image/*" onChange={registerDataChange} className='w-full text-sm' size='xs'/>
+                                    </div>
+                                    <Input type="submit" value="Register" className='w-5/6 hover:bg-red-700 transition-all duration-300 py-1 my-2' sx={{backgroundColor: '#DB4444', color: '#ebebeb'}} />
+                                </form>
                             </div>
-                            <form ref={loginTab} onSubmit={loginSubmit} className="loginForm">
-                                <div className="loginEmail">
-                                    <EmailOutlinedIcon />
-                                    <input type="email" placeholder='Email' required value={loginEmail} onChange={(e) => {
-                                        setLoginEmail(e.target.value)
-                                    }} />
-                                </div>
-                                <div className="loginPassword">
-                                    <LockOpenIcon />
-                                    <input type="password" placeholder='Password' required value={loginPassword} onChange={(e) => {
-                                        setLoginPassword(e.target.value)
-                                    }} />
-                                </div>
-                                <Link to='/password/forgot'>Forgot password</Link>
-                                <input type="submit" value={"Login"} className='loginBtn' />
-                            </form>
-                            <form
-                                className="signUpForm"
-                                ref={registerTab}
-                                encType="multipart/form-data"
-                                onSubmit={registerSubmit}
-                            >
-                                <div className="signUpName">
-                                    <PermIdentityIcon />
-                                    <input type="text" placeholder="Name" required name="name" value={name} onChange={registerDataChange} />
-                                </div>
-                                <div className="signUpEmail">
-                                    <EmailOutlinedIcon />
-                                    <input type="email" placeholder="Email" required name="email" value={email} onChange={registerDataChange} />
-                                </div>
-                                <div className="signUpPassword">
-                                    <LockOpenIcon />
-                                    <input type="password" placeholder="Password" required name="password" value={password} onChange={registerDataChange} />
-                                </div>
-                                <div className="registerImage">
-                                    <img className='demoProfile' src={avatarPreview} alt="Avatar Preview" />
-                                    <input type="file" name="avatar" accept="image/*" onChange={registerDataChange} />
-                                </div>
-                                <input type="submit" value="Register" className="signUpBtn" />
-                            </form>
                         </div>
                     </div>
                 </Fragment>
