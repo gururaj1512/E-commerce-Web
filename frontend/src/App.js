@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 import WebFont from 'webfontloader'
 
 import Header from './component/layout/Header/Header.js'
+import LoginRoute from './component/Route/LoginRoute.js'
 import Home from './component/Home/Home.js'
 import ProductDetails from './component/Product/ProductDetails.js'
 import Products from './component/Product/Products.js'
@@ -80,14 +81,14 @@ function App() {
           <Route exact path='/password/reset/:token' element={<ResetPassword />} />
 
           <Route exact path='/cart' element={<Cart />} />
-          {isAuthenticated && <Route exact path='/shipping' element={<Shipping />} />}
-          {isAuthenticated && <Route exact path='/order/confirm' element={<ConfirmOrder />} />}
+          {<Route exact path='/shipping' element={isAuthenticated === true ? <Shipping/> : <LoginRoute />} />}
+          {<Route exact path='/order/confirm' element={isAuthenticated === true ? <ConfirmOrder/> : <LoginRoute />} />}
           
           {(isAuthenticated && stripeApiKey) && <Route exact path='/process/payment' element={<Elements stripe={loadStripe(stripeApiKey)}><Payment /></Elements>} />}
           
-          {isAuthenticated && <Route exact path='/success' element={<OrderSuccess />} />}
-          {isAuthenticated && <Route exact path='/orders' element={<MyOrders />} />}
-          {isAuthenticated && <Route exact path='/order/:id' element={<OrderDetails />} />}
+          {<Route exact path='/success' element={isAuthenticated === true ? <OrderSuccess/> : <LoginRoute />} />}
+          {<Route exact path='/orders' element={isAuthenticated === true ? <MyOrders/> : <LoginRoute />} />}
+          {<Route exact path='/order/:id' element={isAuthenticated === true ? <OrderDetails/> : <LoginRoute />} />}
 
           {isAuthenticated && isAdmin && <Route exact path='/admin/dashboard' element={<Dashboard />} />}
           {isAuthenticated && isAdmin && <Route exact path='/admin/products' element={<Productlist />} />}

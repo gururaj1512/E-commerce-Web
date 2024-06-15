@@ -1,15 +1,14 @@
 import React from 'react'
-import './UpdateProfile.css'
 import { Fragment, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
-import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 import Loader from '../layout/Loader/Loader'
 import { useSelector, useDispatch } from "react-redux"
 import { updateProfile, clearErrors, loadUser } from '../../actions/userActions';
 import { useAlert } from 'react-alert'
 import { UPDATE_PROFILE_RESET } from '../../constants/userConstants';
 import MetaData from '../layout/MetaData';
+import { Mail, Person } from '@mui/icons-material';
+import Input from '@mui/joy/Input';
 
 const UpdateProfile = () => {
     const navigate = useNavigate();
@@ -22,7 +21,7 @@ const UpdateProfile = () => {
     const [name, setName] = useState("")
     const [email, setEmail] = useState("")
 
-    const [avatar, setAvatar] = useState();
+    const [avatar, setAvatar] = useState("");
     const [avatarPreview, setAvatarPreview] = useState("");
 
     const updateProfileSubmit = (e) => {
@@ -75,27 +74,25 @@ const UpdateProfile = () => {
         <Fragment>
             {loading ? <Loader /> : <Fragment>
                 <MetaData title={"Update Profile"} />
-                <div className="UpdateProfileContainer">
-                    <h2>Update Profile</h2>
-                    <div className="UpdateProfileBox">
+                <div className="w-screen h-screen flex sm:flex-col-reverse items-center justify-center bg-white">
+                    <div className="w-1/3 md:w-1/2 sm:w-5/6 min-w-52 flex flex-col items-center justify-center box-border overflow-hidden bg-slate-50 rounded-xl py-4 ,t-8">
+                        <h2 className='my-3 text-xl'>Update Profile</h2>
                         <form
-                            className="UpdateProfileForm"
+                            className="flex items-center flex-col m-auto padding-6 h-5/6 w-full transition-all duration-500 pb-2"
                             encType="multipart/form-data"
                             onSubmit={updateProfileSubmit}
                         >
-                            <div className="UpdateProfileName">
-                                <PermIdentityIcon />
-                                <input type="text" placeholder="Name" required name="name" value={name} onChange={(e) => setName(e.target.value)} />
+                            <div className="flex items-center w-5/6 my-2">
+                                <Input startDecorator={<Person />} type="text" placeholder="Name" required name="name" value={name} onChange={(e) => setName(e.target.value)} className='w-full' sx={{fontSize: '14px'}} />
                             </div>
-                            <div className="UpdateProfileEmail">
-                                <EmailOutlinedIcon />
-                                <input type="email" placeholder="Email" required name="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                            <div className="flex items-center w-5/6 my-2">
+                                <Input startDecorator={<Mail />} type="email" placeholder="Email" required name="email" value={email} onChange={(e) => setEmail(e.target.value)} className='w-full' sx={{fontSize: '14px'}} />
                             </div>
-                            <div className="UpdateProfileImage">
-                                <img className='demoProfile' src={avatarPreview} alt="Avatar Preview" />
-                                <input type="file" name="avatar" accept="image/*" onChange={updateProfileDataChange} />
+                            <div className="flex items-center w-5/6 my-2">
+                                <img className='h-9 w-9 mr-4 rounded-full' src={avatarPreview} alt="Avatar Preview" />
+                                <Input type="file" name="avatar" accept="image/*" value={""} onChange={updateProfileDataChange} size='small' className='w-full' sx={{fontSize: '14px'}} />
                             </div>
-                            <input type="submit" value="Update" className="UpdateProfileBtn" />
+                            <Input type="submit" value="Update" className='w-5/6 hover:bg-red-700 transition-all duration-300 py-1 mt-6' sx={{backgroundColor: '#DB4444', color: '#ebebeb'}} />
                         </form>
                     </div>
                 </div>
