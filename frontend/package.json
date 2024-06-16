@@ -2,9 +2,10 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "20.x"
+  },
   "dependencies": {
-    "@emotion/react": "^11.11.4",
-    "@emotion/styled": "^11.11.5",
     "@material-ui/lab": "^4.0.0-alpha.61",
     "@mui/icons-material": "^5.15.15",
     "@mui/joy": "^5.0.0-beta.36",
