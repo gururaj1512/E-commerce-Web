@@ -1,3 +1,4 @@
 *node_modules/*
-config
+/backend/config/config.env
 node_modules
+Mongo db connections.txt
