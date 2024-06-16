@@ -6,10 +6,8 @@ import { TreeItem } from '@mui/x-tree-view/TreeItem';
 
 const Sidebar = () => {
 
-
-
     return (
-        <div className='h-full w-1/5 sm:w-1/4 bg-slate-100'>
+        <div className='h-full sm:h-100 w-1/5 sm:w-1/4 bg-white border-r-2 border-slate-300'>
             <Link to="/" className="">
                 <img src={Logo} alt="Ecommerce" className='w-5/6 mx-auto py-4' />
             </Link>

@@ -23,7 +23,7 @@ const Profile = () => {
                             <MetaData title={`${user.name}'s Profile`} />
                             <div className="w-1/2 md:w-4/5 sm:w-5/6 h-2/5 md:h-2/3 sm:h-2/3 bg-slate-50 border-l-4 border-main-red rounded-md">
                                 <div className='flex md:flex-col sm:flex-col justify-evenly items-center xl:my-4 lg:my-4 md:my-3 sm:my-2'>
-                                    <img src={user.avatar.url} alt={user.name} className='h-20 w-20 md:h-16 md:w-16 sm:h-16 sm:w-16 object-none object-center rounded-full border-2 p-1 md:my-2 sm:mb-3' />
+                                    <img src={user.avatar.url} alt={user.name} className='h-20 w-20 md:h-16 md:w-16 sm:h-16 sm:w-16 object-fill rounded-full border-2 p-1 md:my-2 sm:mb-3' />
                                     <div className=''>
                                         <p className='sm:text-center md:text-center sm:text-sm'>{user.name}</p>
                                         <p className='sm:text-center md:text-center sm:text-xs'>Email : {user.email}</p>

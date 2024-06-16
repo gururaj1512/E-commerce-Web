@@ -30,6 +30,8 @@ import UpdateProduct from './component/Admin/UpdateProduct.js'
 import Userlist from './component/Admin/Userlist.js'
 import UpdateUser from './component/Admin/UpdateUser.js'
 import ProductReviews from './component/Admin/ProductReviews.js'
+import Orderlist from './component/Admin/Orderlist.js';
+import ProcessOrder from './component/Admin/ProcessOrder.js';
 
 import axios from 'axios'
 import { loadUser } from './actions/userActions.js';
@@ -94,9 +96,11 @@ function App() {
           {isAuthenticated && isAdmin && <Route exact path='/admin/products' element={<Productlist />} />}
           {isAuthenticated && isAdmin && <Route exact path='/admin/product' element={<NewProduct />} />}
           {isAuthenticated && isAdmin && <Route exact path='/admin/product/:id' element={<UpdateProduct />} />}
+          {isAuthenticated && isAdmin && <Route exact path='/admin/orders' element={<Orderlist />} />}
+          {isAuthenticated && isAdmin && <Route exact path='/admin/order/:id' element={<ProcessOrder />} />}
           {isAuthenticated && isAdmin && <Route exact path='/admin/users' element={<Userlist />} />}
           {isAuthenticated && isAdmin && <Route exact path='/admin/user/:id' element={<UpdateUser />} />}
-          {isAuthenticated && isAdmin && <Route exact path='/admin/reviews' element={<ProductReviews />} />}
+          {isAuthenticated && isAdmin && <Route exact path='/admin/reviews' element={<ProductReviews />} />}  
         </Routes>
       </Router>
     </div>
