@@ -1,28 +1,28 @@
 import { AccountBalance, LibraryAddCheck, LocalShipping } from '@mui/icons-material'
 import { Step, StepLabel, Stepper, Typography } from '@mui/material'
 import React, { Fragment } from 'react'
-import './CheckoutSteps.css'
+import './styles/CheckoutSteps.css'
 
 const CheckoutSteps = ({ activeStep }) => {
 
     const steps = [
         {
-            label: <Typography>Shipping Details</Typography>,
+            label: <Typography variant="caption">Shipping Details</Typography>,
             icon: <LocalShipping />
         },
         {
-            label: <Typography>Confirm Order</Typography>,
+            label: <Typography variant="caption">Confirm Order</Typography>,
             icon: <LibraryAddCheck />
         },
         {
-            label: <Typography>Payment</Typography>,
+            label: <Typography variant="caption">Payment</Typography>,
             icon: <AccountBalance />
         },
     ]
 
     const stepStyles = {
         boxSizing: 'border-box',
-        padding: "20px 0"
+        padding: "20px 0 10px 0"
     }
 
     return (
@@ -32,7 +32,7 @@ const CheckoutSteps = ({ activeStep }) => {
                     steps.map((item, index) => (
                         <Step key={index} active={activeStep === index ? true : false} completed={activeStep >= index ? true : false} >
                             <StepLabel icon={item.icon} style={{
-                                color: activeStep >= index ? "#ff5e14" : "rgb(0, 0, 0, 0.7)"
+                                color: activeStep >= index ? "#DB4444" : "rgb(0, 0, 0, 0.7)"
                             }}>
                                 {item.label}
                             </StepLabel>

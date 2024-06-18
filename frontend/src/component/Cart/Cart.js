@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import CartItemCard from './CartItemCard.js'
 import { useDispatch, useSelector } from 'react-redux'
 import { addItemsToCart, removeItemsFromCart } from '../../actions/cartAction.js'
-import { FaShoppingBag } from 'react-icons/fa'
+import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import { useNavigate } from 'react-router-dom'
 
 
@@ -40,10 +40,10 @@ const Cart = () => {
         <Fragment>
             {
                 cartItems.length === 0 ? (
-                    <div className='noItemMessage'>
-                        <FaShoppingBag />
-                        <p>No products found. Please add products to cart</p>
-                        <a href='/products'>Add Now</a>
+                    <div className='w-screen h-screen flex flex-col items-center justify-center px-5'>
+                        <ShoppingBagIcon sx={{ fontSize: 80, margin: '10px', color: '#DB4444' }} />
+                        <p className="text-slate-800 text-xl sm:text-sm text-center mb-2">No products found. Please add products to cart</p>
+                        <a href='/products' className='text-blue-600 hover:text-blue-900'>Add Now</a>
                     </div>) : (
                     <Fragment>
                         <div className='max-w-screen h-auto pt-20 sm:pt-16'>
@@ -82,7 +82,7 @@ const Cart = () => {
 
                                 <div className="w-11/12 h-24 sm:h-16 mx-auto flex items-center justify-end border-t-2 border-slate-100 my-2">
                                     <div className="w-auto">
-                                        <p className='px-4 sm:px-2 sm:text-sm'>Gross Total 
+                                        <p className='px-4 sm:px-2 sm:text-sm'>Gross Total
                                             <span className='px-2 text-main-red font-medium'>
                                                 {`₹${cartItems.reduce(
                                                     (acc, item) => acc + item.quantity * item.price, 0

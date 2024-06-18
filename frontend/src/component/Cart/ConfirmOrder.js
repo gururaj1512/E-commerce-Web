@@ -1,8 +1,7 @@
 import React, { Fragment } from 'react'
 import { useSelector } from 'react-redux'
-import CheckoutSteps from '../Cart/CheckoutSteps.js'
+import CheckoutSteps from './CheckoutSteps'
 import MetaData from '../layout/MetaData'
-import './ConfirmOrder.css'
 import { Typography } from '@mui/material'
 import { Link, useNavigate } from 'react-router-dom'
 
@@ -33,66 +32,56 @@ const ConfirmOrder = () => {
     return (
         <Fragment>
             <MetaData title="Confirm Order" />
-            <CheckoutSteps activeStep={1} />
-            <div className="confirmOrderPage">
-                <div>
-                    <div className="confirmshippingArea">
-                        <Typography>Shipping Info</Typography>
-                        <div className="confirmshippingAreaBox">
-                            <div>
-                                <p>Name: {user.name}</p>
-                            </div>
-                            <div>
-                                <p>Phone: {shippingInfo.phoneNo}</p>
-                            </div>
-                            <div>
-                                <p>Address: {address}</p>
+            <div className="w-screen max-w-screen pt-20 sm:pt-16">
+                <CheckoutSteps activeStep={1} />
+                <div className='flex mt-6 sm:mt-2 sm:flex-col'>
+                    <div className='w-1/2 sm:w-11/12 md:2/3 mx-4 pl-10 md:pl-10 sm:pl-0'>
+                        <div className="w-full my-4">
+                            <Typography variant='h6'>Shipping Info</Typography>
+                            <div className="pl-5 pt-2 sm:pl-3 sm:pt-1">
+                                <p className='text-sm sm:text-xs'>Name: {user.name}</p>
+                                <p className='text-sm sm:text-xs'>Phone: {shippingInfo.phoneNo}</p>
+                                <p className='text-sm sm:text-xs'>Address: {address}</p>
                             </div>
                         </div>
-                    </div>
-                    <div className="confirmCartItems">
-                        <Typography>Your Cart Items:</Typography>
-                        <div className="confirmCartItemsContainer">
-                            {cartItems &&
-                                cartItems.map((item) => (
-                                    <div key={item.product} className='cartItemProduct'>
-                                        <img src={item.image} alt="Product" />
-                                        <Link to={`/product/${item.product}`}>
-                                            {item.name}
-                                        </Link>{" "}
-                                        <span>
-                                            {item.quantity} X ₹{item.price} ={" "}
-                                            <b>₹{item.price * item.quantity}</b>
-                                        </span>
-                                    </div>
+                        <div className="w-full my-4">
+                            <Typography variant='h6'>Your Cart Items:</Typography>
+                            <div className='overflow-y-scroll max-h-24'>
+                                {cartItems && cartItems.map((item) => (
+                                    <Link to={`/product/${item.product}`} key={item.product}>
+                                        <div key={item.product} className='w-full h-20 flex items-center justify-between sm:justify-around my-2 px-10 md:px-5 sm:px-2'>
+                                            <img src={item.image} alt="Product" className='h-20' />
+                                            <div className='sm:text-sm'>
+                                                <div className='text-right'>
+                                                    {item.name}
+                                                </div>
+                                                <div className='text-right'>
+                                                    {item.quantity} X ₹{item.price} ={" "}
+                                                    <b>₹{item.price * item.quantity}</b>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </Link>
                                 ))}
+                            </div>
                         </div>
                     </div>
-                </div>
-                {/*  */}
-                <div>
-                    <div className="orderSummary">
-                        <Typography>Order Summery</Typography>
-                        <div>
-                            <div>
-                                <p>Subtotal: ₹{subtotal}</p>
-                            </div>
-                            <div>
-                                <p>Shipping Charges: ₹{shippingCharges}</p>
-                            </div>
-                            <div>
-                                <p>GST: ₹{tax}</p>
+                    <div className='w-1/2 flex flex-col sm:w-11/12 mx-auto xl:border-l-2 lg:border-l-2 md:border-l-2 sm:border-t-2 border-slate-800'>
+                        <div className="mx-5 w-11/12">
+                            <Typography variant='h6' sx={{ textAlign: 'center', margin: '10px 0' }}>Order Summery</Typography>
+                            <div className='flex items-center justify-between'>
+                                <div className='text-sm sm:text-xs'>
+                                    <p>Subtotal: ₹{subtotal}</p>
+                                    <p>Shipping Charges: ₹{shippingCharges}</p>
+                                    <p>GST: ₹{tax}</p>
+                                </div>
+                                <div className="">
+                                    <p><b>Total:</b></p>
+                                    <span>₹{totalPrice}</span>
+                                </div>
                             </div>
                         </div>
-
-                        <div className="orderSummaryTotal">
-                            <p>
-                                <b>Total:</b>
-                            </p>
-                            <span>₹{totalPrice}</span>
-                        </div>
-
-                        <button onClick={proceedToPayment}>Proceed To Payment</button>
+                        <button className='mx-auto w-1/3 text-sm text-slate-100 bg-main-red hover:bg-slate-800 py-2 rounded-md transition-all duration-300 my-5' onClick={proceedToPayment}>Pay ₹{totalPrice}</button>
                     </div>
                 </div>
             </div>
