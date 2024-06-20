@@ -2,11 +2,10 @@ import React, { Fragment, useEffect, useRef } from 'react'
 import CheckoutSteps from './CheckoutSteps'
 import { useDispatch, useSelector } from 'react-redux'
 import MetaData from '../layout/MetaData'
-import { Typography } from '@mui/material'
 import { useAlert } from 'react-alert'
 import axios from 'axios'
-import { CreditCard, Event, VpnKey } from '@mui/icons-material'
 import './Payment.css'
+import { CreditCard, Event, VpnKey } from '@mui/icons-material'
 import { CardNumberElement, CardCvcElement, CardExpiryElement, useStripe, useElements } from '@stripe/react-stripe-js'
 import { useNavigate } from 'react-router-dom'
 import { clearErrors, createOrder } from '../../actions/orderAction'
@@ -109,7 +108,7 @@ const Payment = () => {
                     <form className='paymentForm' onSubmit={(e) => submitHandler(e)} >
                         <div>
                             <CreditCard />
-                            <CardNumberElement className='paymentInput' />
+                            <CardNumberElement className='paymentInput'/>
                         </div>
                         <div>
                             <Event />
@@ -119,7 +118,6 @@ const Payment = () => {
                             <VpnKey />
                             <CardCvcElement className='paymentInput' />
                         </div>
-
                         <input type="submit" value={`Pay - ${orderInfo && orderInfo.totalPrice}`} ref={payBtn} className='paymentFormBtn' />
                     </form>
                 </div>
