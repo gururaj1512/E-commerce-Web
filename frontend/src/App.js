@@ -100,7 +100,7 @@ function App() {
           {isAuthenticated && isAdmin && <Route exact path='/admin/order/:id' element={<ProcessOrder />} />}
           {isAuthenticated && isAdmin && <Route exact path='/admin/users' element={<Userlist />} />}
           {isAuthenticated && isAdmin && <Route exact path='/admin/user/:id' element={<UpdateUser />} />}
-          {isAuthenticated && isAdmin && <Route exact path='/admin/reviews' element={<ProductReviews />} />}  
+          {isAuthenticated && isAdmin && <Route exact path='/admin/reviews' element={<ProductReviews />} />}
         </Routes>
       </Router>
     </div>
