@@ -46,5 +46,5 @@ let initialState = {
 };
 const middleware = [thunk];
 
-export const persistReduxStore = createStore(persistedReducer, initialState, composeWithDevTools(applyMiddleware(...middleware)));
+export const persistReduxStore = createStore(persistedReducer, initialState, applyMiddleware(...middleware));
 // export const persistor = persistStore(persistReduxStore);
