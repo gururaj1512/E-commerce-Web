@@ -10,12 +10,12 @@ const cloudinary = require("cloudinary")
 // Register a User
 exports.registerUser = catchAsyncError(async (req, res, next) => {
 
-  const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
+  const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar ? req.body.avatar : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png", {
     folder: "avatars",
     width: 500,
     crop: "scale",
     public_id: `${Date.now()}`,
-    resource_type: "auto" 
+    resource_type: "auto"
   })
 
   const { name, email, password } = req.body;
@@ -30,6 +30,17 @@ exports.registerUser = catchAsyncError(async (req, res, next) => {
     },
   });
 
+  const message = `Welcome to E-Commerce Store \n If you have not registered this email then, please ignore it.`;
+  try {
+    await sendEmail({
+      email: user.email,
+      subject: `Welcome to E-Commerce Store`,
+      message,
+    });
+  } catch (error) {
+    return next(new ErrorHander(error.message, 500));
+  }
+  
   sendToken(user, 201, res);
 });
 

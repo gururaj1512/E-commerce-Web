@@ -31,7 +31,7 @@ const LoginSignup = () => {
         password: "",
     })
     const { name, email, password } = user;
-    const [avatar, setAvatar] = useState();
+    const [avatar, setAvatar] = useState("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png");
     const [avatarPreview, setAvatarPreview] = useState("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png");
 
     const loginSubmit = (e) => {
