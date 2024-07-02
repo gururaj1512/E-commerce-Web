@@ -32,7 +32,7 @@ const Products = () => {
     const dispatch = useDispatch()
 
     let [currentPage, setCurrentPage] = useState(1)
-    const [price, setPrice] = useState([0, 25000])
+    const [price, setPrice] = useState([0, 1000000])
     const [category, setCategory] = useState("")
     const [ratings, setRatings] = useState(0)
 
